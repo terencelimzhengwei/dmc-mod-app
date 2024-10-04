@@ -29,7 +29,7 @@ const convertImageToRGB565 = (imageData, useGreenAsAlpha = true) => {
     }
 
     // Return the Uint16Array containing the RGB565 data
-    return rgb565Array;
+    return rgb565Array.buffer;
 };
 
 const convertRgb565ToImage = (

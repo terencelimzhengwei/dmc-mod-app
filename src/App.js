@@ -36,10 +36,11 @@ function App() {
     };
 
     const buildClick = async () => {
+        console.log(data.imageDatas)
         const buffer = await rebuild(data);
-        const newData = { ...data, buffer };
+        const newData = { ...data, buffer:buffer.slice(0) };
         setData(newData);
-        downloadBIN(buffer);
+        downloadBIN(newData.buffer);
         toast({
             title: 'BIN built and downloaded',
             description: 'The updated bin has been downloaded as output.bin',
@@ -95,7 +96,7 @@ function App() {
         } else {
             toast({
                 title: `${originalData.firmware.name} firmware with invalid regions`,
-                description: `Firmware identified to be ${originalData.firmware.name} but failed region checks`,
+                description: `Firmware identified to be ${originalData.firmware.name} but failed region checks. Try uploading an original firmware to use the app`,
                 status: 'error',
                 duration: 9000,
                 isClosable: true,

@@ -80,32 +80,17 @@ const getImages = (arrayBuffer, spriteMetadata, imageInfos) => {
 // };
 
 async function rebuild(data) {
-    console.log(data);
     const buffer = data.buffer.slice(0);
+    const spriteMetadata = data.spriteMetadata
+    const view = new Uint8Array(buffer)
     const imageInfos = data.imageInfos;
-    const view = new DataView(buffer);
 
-    imageInfos.forEach((img, index) => {
+    imageInfos.forEach((img, i) => {
         const { width, height, dataOffset } = img;
-        const newImageData = data.imageDatas[index].rgb565;
-
-        // Ensure the new image has the correct size (width * height * 2 bytes)
-        const expectedLength = width * height * 2;
-        if (newImageData.byteLength !== expectedLength) {
-            console.error(`New image ${index + 1} has incorrect size`);
-            return;
-        }
-
-        // Replace the image data in the DataView (RGB565 format, 2 bytes per pixel)
-        for (let i = 0; i < newImageData.length; i++) {
-            const pixelData = newImageData[i]; // RGB565 pixel data (16 bits)
-            const byteOffset = dataOffset + i * 2; // Each pixel occupies 2 bytes
-
-            // Write the 16-bit pixel (2 bytes) to the ArrayBuffer
-            view.setUint16(byteOffset, pixelData, true); // true for little-endian
-        }
-    });
-    return view.buffer.slice(0);
+        const newImageView = new Uint8Array(data.imageDatas[i].rgb565)
+        view.set(newImageView,Number(spriteMetadata.SpritePackBase)+dataOffset)
+    })
+    return view.buffer
 }
 
 const downloadFile = (url, filename) => {

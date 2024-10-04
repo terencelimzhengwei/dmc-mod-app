@@ -6,7 +6,6 @@ export default function FileUpload(props) {
 
     const handleFileRead = async file => {
         const arrayBuffer = await file.arrayBuffer();
-        console.log(arrayBuffer);
         handleUpload(arrayBuffer);
     };
 
