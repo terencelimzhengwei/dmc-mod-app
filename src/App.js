@@ -40,6 +40,14 @@ function App() {
         const newData = { ...data, buffer };
         setData(newData);
         downloadBIN(buffer);
+        toast({
+            title: 'BIN built and downloaded',
+            description: 'The updated bin has been downloaded as output.bin',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+            position: 'bottom-right',
+        });
     };
 
     const updateSprite = data => {
