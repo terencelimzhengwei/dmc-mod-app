@@ -1,5 +1,5 @@
 import { arrayBufferToImageData } from './imageUtils';
-import JSZip from 'jszip';
+// import JSZip from 'jszip';
 import metadata from './metadata.json';
 import firmwareChecker from './firmwareChecker';
 
@@ -80,7 +80,7 @@ const getImages = (arrayBuffer, spriteMetadata, imageInfos) => {
 // };
 
 async function rebuild(data) {
-    console.log(data)
+    console.log(data);
     const buffer = data.buffer.slice(0);
     const imageInfos = data.imageInfos;
     const view = new DataView(buffer);
@@ -125,7 +125,7 @@ const downloadBIN = (arrayBuffer, filename = 'output.bin') => {
 };
 
 const init = async arrayBuffer => {
-    const buffer = arrayBuffer
+    const buffer = arrayBuffer;
     const firmware = await firmwareChecker(buffer);
     if (!firmware) {
         return null;

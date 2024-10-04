@@ -9,11 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { useDropzone } from 'react-dropzone';
 import { useMemo } from 'react';
-import {
-    getImageDetails,
-    convertImageToRGB565,
-    arrayBufferToImageData,
-} from '../utils/imageUtils';
+import { getImageDetails, arrayBufferToImageData } from '../utils/imageUtils';
 
 const UpdateSprite = props => {
     const { data, updateSprite } = props;

@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { ChakraProvider, Box, extendTheme, Flex, useToast } from '@chakra-ui/react';
+import {
+    ChakraProvider,
+    Box,
+    extendTheme,
+    Flex,
+    useToast,
+} from '@chakra-ui/react';
 import Nav from './components/Nav';
 import UploadBIN from './components/UploadBIN';
 import UpdateSprite from './components/UpdateSprite';
@@ -8,10 +14,10 @@ import { init, rebuild, downloadBIN } from './utils/analyzer';
 // Create a theme with default mode set to dark
 const theme = extendTheme({
     config: {
-      initialColorMode: 'dark', // Set default color mode to dark
-      useSystemColorMode: false, // Do not use system color mode
+        initialColorMode: 'dark', // Set default color mode to dark
+        useSystemColorMode: false, // Do not use system color mode
     },
-  });
+});
 
 function App() {
     const [page, setPage] = useState(0);
@@ -30,11 +36,11 @@ function App() {
     };
 
     const buildClick = async () => {
-        const buffer = await rebuild(data)
-        const newData = {...data, buffer}
-        setData(newData)
-        downloadBIN(buffer)
-    }
+        const buffer = await rebuild(data);
+        const newData = { ...data, buffer };
+        setData(newData);
+        downloadBIN(buffer);
+    };
 
     const updateSprite = data => {
         setData(data);

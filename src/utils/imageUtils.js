@@ -91,13 +91,13 @@ const arrayBufferToImageData = (
         useGreenAsAlpha
     );
     const url = convertImageDataToDataURL(imageData);
-    return { imageData, url, rgb565:arrayBuffer };
+    return { imageData, url, rgb565: arrayBuffer };
 };
 
 const getImageDetails = async file => {
     const name = file.name;
     const imageData = await getImageData(file);
-    const rgb565 = convertImageToRGB565(imageData)
+    const rgb565 = convertImageToRGB565(imageData);
     return { name, imageData, rgb565 };
 };
 

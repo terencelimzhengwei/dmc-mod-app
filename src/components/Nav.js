@@ -3,7 +3,8 @@ import { Flex, Spacer, Button, ButtonGroup } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 
 const Nav = props => {
-    const { pageActive, fileUploaded, navClick, restartClick, buildClick } = props;
+    const { pageActive, fileUploaded, navClick, restartClick, buildClick } =
+        props;
     return (
         <Flex p={2}>
             <ButtonGroup variant="outline" spacing="2">
@@ -45,7 +46,9 @@ const Nav = props => {
             <Spacer />
             <ButtonGroup variant="outline" spacing="2">
                 {fileUploaded ? (
-                    <Button colorScheme="green" onClick={buildClick}>Build</Button>
+                    <Button colorScheme="green" onClick={buildClick}>
+                        Build
+                    </Button>
                 ) : null}
                 {fileUploaded ? (
                     <Button colorScheme="red" onClick={restartClick}>
