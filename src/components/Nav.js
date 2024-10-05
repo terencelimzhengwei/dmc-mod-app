@@ -11,7 +11,7 @@ const Nav = props => {
                 {!fileUploaded ? (
                     <Button
                         variant="ghost"
-                        isActive={true ? pageActive === 0 : false}
+                        isActive={pageActive === 0}
                         onClick={() => navClick(0)}
                     >
                         Upload BIN
@@ -20,7 +20,7 @@ const Nav = props => {
                 {fileUploaded ? (
                     <Button
                         variant="ghost"
-                        isActive={true ? pageActive === 1 : false}
+                        isActive={pageActive === 1}
                         onClick={() => navClick(1)}
                     >
                         Update Images
@@ -29,7 +29,7 @@ const Nav = props => {
                 {fileUploaded ? (
                     <Button
                         variant="ghost"
-                        isActive={true ? pageActive === 2 : false}
+                        isActive={pageActive === 2}
                         onClick={() => navClick(2)}
                     >
                         Update Stats
@@ -37,7 +37,7 @@ const Nav = props => {
                 ) : null}
                 <Button
                     variant="ghost"
-                    isActive={true ? pageActive === 3 : false}
+                    isActive={pageActive === 3}
                     onClick={() => navClick(3)}
                 >
                     About
