@@ -86,7 +86,7 @@ async function rebuild(data) {
     const imageInfos = data.imageInfos;
 
     imageInfos.forEach((img, i) => {
-        const { width, height, dataOffset } = img;
+        const { dataOffset } = img;
         const newImageView = new Uint8Array(data.imageDatas[i].rgb565);
         view.set(
             newImageView,
