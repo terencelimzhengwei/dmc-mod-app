@@ -93,10 +93,13 @@ function App() {
             });
             return;
         } else {
+            setOriginalData(originalData);
+            setData(originalData);
+            setPage(1);
             toast({
-                title: `${originalData.firmware.name} firmware with invalid regions`,
-                description: `Firmware identified to be a modified ${originalData.firmware.name} as it failed region checks. Try uploading an original firmware to use the app`,
-                status: 'error',
+                title: `Modified ${originalData.firmware.name} detected`,
+                description: `Firmware identified to be a modified ${originalData.firmware.name} as it failed region checks. Do note that app might not work correctly if you have added additional sprites or included sprites of different sizes than the original`,
+                status: 'warning',
                 duration: 9000,
                 isClosable: true,
                 position: 'bottom-right',
