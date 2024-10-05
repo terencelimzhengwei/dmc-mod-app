@@ -8,6 +8,7 @@ import {
     WrapItem,
     VStack,
     Center,
+    useToast,
 } from '@chakra-ui/react';
 import { useDropzone } from 'react-dropzone';
 import { useMemo } from 'react';
@@ -15,24 +16,64 @@ import { getImageDetails, arrayBufferToImageData } from '../utils/imageUtils';
 
 const UpdateSprite = props => {
     const { data, updateSprite } = props;
+    const toast = useToast();
 
     const onDrop = async acceptedFiles => {
         const newImageDatas = [...data.imageDatas];
+        let indexError = false;
+        let dimensionError = false;
         if (acceptedFiles.length) {
             // Create an array of promises
             const promises = acceptedFiles.map(async f => {
                 const { name, imageData, rgb565 } = await getImageDetails(f);
                 const index = parseInt(name.split('.')[0]);
-                const data = arrayBufferToImageData(
+                if (index >= data.imageDatas.length) {
+                    indexError = true;
+                    return;
+                }
+                if (
+                    imageData.width !==
+                        data.imageDatas[index].imageData.width ||
+                    imageData.height !== data.imageDatas[index].imageData.height
+                ) {
+                    dimensionError = true;
+                    return;
+                }
+                const newData = arrayBufferToImageData(
                     rgb565,
                     imageData.width,
                     imageData.height
                 );
-                newImageDatas[index] = data; // Update the cloned array
+                newImageDatas[index] = newData; // Update the cloned array
             });
 
             // Wait for all promises to resolve
             await Promise.all(promises);
+            if (dimensionError) {
+                toast({
+                    title: 'Dimension Error',
+                    description:
+                        'One of the files you uploaded have different dimensions from the original image',
+                    status: 'error',
+                    duration: 9000,
+                    isClosable: true,
+                    position: 'bottom-right',
+                });
+                return;
+            }
+
+            if (indexError) {
+                toast({
+                    title: 'Index Error',
+                    description:
+                        'One of the files you have uploaded have an index that is out of range',
+                    status: 'error',
+                    duration: 9000,
+                    isClosable: true,
+                    position: 'bottom-right',
+                });
+                return;
+            }
 
             // Create a new data object by copying the old data and updating imageUrls
             const updatedData = {
@@ -51,7 +92,6 @@ const UpdateSprite = props => {
 
     const memoizedImageList = useMemo(() => {
         const imageDatas = data ? data.imageDatas : [];
-        console.log(imageDatas);
         return imageDatas.map((image, index) => (
             <WrapItem key={index} align={'center'}>
                 <VStack

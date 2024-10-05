@@ -11,6 +11,7 @@ import UploadBIN from './components/UploadBIN';
 import UpdateSprite from './components/UpdateSprite';
 import { init, rebuild, downloadBIN } from './utils/analyzer';
 import UpdateStats from './components/UpdateStats';
+import UpdateQuest from './components/UpdateQuest';
 import About from './components/About';
 
 // Create a theme with default mode set to dark
@@ -28,9 +29,7 @@ function App() {
     const toast = useToast();
 
     const navClick = p => {
-        console.log(page);
         setPage(p);
-        console.log(page);
     };
 
     const restartClick = () => {
@@ -111,7 +110,6 @@ function App() {
             return;
         }
     };
-    console.log(page === 3);
     return (
         <ChakraProvider theme={theme}>
             <Box textAlign="center" fontSize="xl">
@@ -130,7 +128,8 @@ function App() {
                         <UpdateSprite updateSprite={updateSprite} data={data} />
                     ) : null}
                     {page === 2 ? <UpdateStats data={data} /> : null}
-                    {page === 3 ? <About /> : null}
+                    {page === 3 ? <UpdateQuest data={data} /> : null}
+                    {page === 4 ? <About /> : null}
                 </Flex>
             </Box>
         </ChakraProvider>

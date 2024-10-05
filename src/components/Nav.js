@@ -35,10 +35,19 @@ const Nav = props => {
                         Update Stats
                     </Button>
                 ) : null}
+                {fileUploaded ? (
+                    <Button
+                        variant="ghost"
+                        isActive={pageActive === 3}
+                        onClick={() => navClick(3)}
+                    >
+                        Update Quest Mode
+                    </Button>
+                ) : null}
                 <Button
                     variant="ghost"
-                    isActive={pageActive === 3}
-                    onClick={() => navClick(3)}
+                    isActive={pageActive === 4}
+                    onClick={() => navClick(4)}
                 >
                     About
                 </Button>
