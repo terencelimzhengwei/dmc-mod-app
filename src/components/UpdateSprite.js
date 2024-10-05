@@ -61,7 +61,7 @@ const UpdateSprite = props => {
                 borderStyle="dashed"
                 borderColor="gray.500"
                 boxSize={"130px"}>
-                    <Text fontSize={'xs'} >{`${index}-${image.imageData.width}x${image.imageData.height}`}</Text>
+                    <Text fontSize={'xs'} >{`ID: ${index} (${image.imageData.width}x${image.imageData.height})`}</Text>
                     <Center h={"80%"}>
                         <Image src={image.url} alt={`Sprite ${index}`}/>
                     </Center>
