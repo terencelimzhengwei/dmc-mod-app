@@ -36,7 +36,6 @@ function App() {
     };
 
     const buildClick = async () => {
-        console.log(data.imageDatas)
         const buffer = await rebuild(data);
         const newData = { ...data, buffer:buffer.slice(0) };
         setData(newData);
@@ -96,7 +95,7 @@ function App() {
         } else {
             toast({
                 title: `${originalData.firmware.name} firmware with invalid regions`,
-                description: `Firmware identified to be ${originalData.firmware.name} but failed region checks. Try uploading an original firmware to use the app`,
+                description: `Firmware identified to be a modified ${originalData.firmware.name} as it failed region checks. Try uploading an original firmware to use the app`,
                 status: 'error',
                 duration: 9000,
                 isClosable: true,

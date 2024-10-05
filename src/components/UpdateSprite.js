@@ -6,6 +6,8 @@ import {
     Heading,
     Wrap,
     WrapItem,
+    VStack,
+    Center
 } from '@chakra-ui/react';
 import { useDropzone } from 'react-dropzone';
 import { useMemo } from 'react';
@@ -49,10 +51,21 @@ const UpdateSprite = props => {
 
     const memoizedImageList = useMemo(() => {
         const imageDatas = data ? data.imageDatas : [];
+        console.log(imageDatas)
         return imageDatas.map((image, index) => (
-            <WrapItem key={index}>
-                <Text fontSize={'xs'}>{index}</Text>
-                <Image src={image.url} alt={`Sprite ${index}`} boxSize="50px" />
+            <WrapItem key={index} align={"center"}>
+                <VStack gap={0} 
+                p={1}
+                borderWidth="1px"
+                borderRadius="lg"
+                borderStyle="dashed"
+                borderColor="gray.500"
+                boxSize={"130px"}>
+                    <Text fontSize={'xs'} >{`${index}-${image.imageData.width}x${image.imageData.height}`}</Text>
+                    <Center h={"80%"}>
+                        <Image src={image.url} alt={`Sprite ${index}`}/>
+                    </Center>
+                </VStack>
             </WrapItem>
         ));
     }, [data]);
