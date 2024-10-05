@@ -10,6 +10,7 @@ import Nav from './components/Nav';
 import UploadBIN from './components/UploadBIN';
 import UpdateSprite from './components/UpdateSprite';
 import { init, rebuild, downloadBIN } from './utils/analyzer';
+import UpdateStats from './components/UpdateStats';
 
 // Create a theme with default mode set to dark
 const theme = extendTheme({
@@ -37,7 +38,7 @@ function App() {
 
     const buildClick = async () => {
         const buffer = await rebuild(data);
-        const newData = { ...data, buffer:buffer.slice(0) };
+        const newData = { ...data, buffer: buffer.slice(0) };
         setData(newData);
         downloadBIN(newData.buffer);
         toast({
@@ -125,6 +126,7 @@ function App() {
                     {page === 1 ? (
                         <UpdateSprite updateSprite={updateSprite} data={data} />
                     ) : null}
+                    {page === 2 ? <UpdateStats data={data} /> : null}
                 </Flex>
             </Box>
         </ChakraProvider>

@@ -81,16 +81,19 @@ const getImages = (arrayBuffer, spriteMetadata, imageInfos) => {
 
 async function rebuild(data) {
     const buffer = data.buffer.slice(0);
-    const spriteMetadata = data.spriteMetadata
-    const view = new Uint8Array(buffer)
+    const spriteMetadata = data.spriteMetadata;
+    const view = new Uint8Array(buffer);
     const imageInfos = data.imageInfos;
 
     imageInfos.forEach((img, i) => {
         const { width, height, dataOffset } = img;
-        const newImageView = new Uint8Array(data.imageDatas[i].rgb565)
-        view.set(newImageView,Number(spriteMetadata.SpritePackBase)+dataOffset)
-    })
-    return view.buffer
+        const newImageView = new Uint8Array(data.imageDatas[i].rgb565);
+        view.set(
+            newImageView,
+            Number(spriteMetadata.SpritePackBase) + dataOffset
+        );
+    });
+    return view.buffer;
 }
 
 const downloadFile = (url, filename) => {

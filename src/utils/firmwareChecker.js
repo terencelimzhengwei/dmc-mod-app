@@ -38,7 +38,7 @@ const firmwareChecker = async arrayBuffer => {
         const resolvedResults = await Promise.all(resultsArray);
         const validResults = resolvedResults.find(x => x.identifierValid);
         if (!validResults) {
-            return null
+            return null;
         }
         const message = validResults
             ? validResults.regionValid
