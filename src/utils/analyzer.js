@@ -81,9 +81,11 @@ const getImages = (arrayBuffer, spriteMetadata, imageInfos) => {
 
 async function rebuild(data) {
     const buffer = data.buffer.slice(0);
+    const dataView = new DataView(buffer)
     const spriteMetadata = data.spriteMetadata;
     const view = new Uint8Array(buffer);
     const imageInfos = data.imageInfos;
+    const charInfos = data.charInfos;
 
     imageInfos.forEach((img, i) => {
         const { dataOffset } = img;
@@ -93,7 +95,16 @@ async function rebuild(data) {
             Number(spriteMetadata.SpritePackBase) + dataOffset
         );
     });
-    return view.buffer;
+
+    const statOffset = Number(spriteMetadata.StatTableLocation);
+    const statLength = spriteMetadata.Stats.length;
+    charInfos.forEach((info, charIndex) => {
+        Object.keys(info).forEach((key, statIndex) => {
+            dataView.setUint16(statOffset+charIndex*statLength*2+statIndex*2,info[key],true)
+        })
+    })
+    
+    return buffer;
 }
 
 const downloadFile = (url, filename) => {
