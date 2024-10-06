@@ -1,4 +1,4 @@
-import { Flex, Box, Text, Heading, VStack } from '@chakra-ui/react';
+import { Box, Text, Heading } from '@chakra-ui/react';
 import EditableTable from './EditableTable';
 
 const UpdateStats = ({ data, updateData }) => {
