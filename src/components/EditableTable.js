@@ -98,8 +98,6 @@ const EditableRow = ({
 };
 
 const generateCharacters = (charInfos, imageDatas) => {
-    console.log(imageDatas);
-    console.log(charInfos);
     return charInfos.map((info, index) => {
         return {
             index,
@@ -107,7 +105,7 @@ const generateCharacters = (charInfos, imageDatas) => {
             SpriteImage: imageDatas[info.SpriteID].url,
             AttackImage:
                 info.AttackSprite < imageDatas.length
-                    ? imageDatas[info.AttackSprite].url
+                    ? imageDatas[info.AttackSprite + 1].url
                     : null,
             AltAttackImage:
                 info.AltAttackSprite < imageDatas.length
