@@ -65,6 +65,19 @@ function App() {
         });
     };
 
+    const updateStats = data => {
+        console.log(data);
+        setData(data);
+        toast({
+            title: 'Stats Updated',
+            description: 'Your stats have been updated',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+            position: 'bottom-right',
+        });
+    };
+
     const handleUpload = async arrayBuffer => {
         const originalData = await init(arrayBuffer);
         if (!originalData || !originalData.firmware) {
@@ -127,7 +140,9 @@ function App() {
                     {page === 1 ? (
                         <UpdateSprite updateSprite={updateSprite} data={data} />
                     ) : null}
-                    {page === 2 ? <UpdateStats data={data} /> : null}
+                    {page === 2 ? (
+                        <UpdateStats data={data} updateData={updateStats} />
+                    ) : null}
                     {page === 3 ? <UpdateQuest data={data} /> : null}
                     {page === 4 ? <About /> : null}
                 </Flex>

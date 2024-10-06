@@ -105,38 +105,6 @@ const About = () => {
                 </Text>
             </GridItem>
         </Grid>
-        // <Flex flexDir={'column'} align={'left'} gap={4}>
-        //     <Wrap flexDir={'row'}>
-        //         <Box
-        //             borderWidth="2px"
-        //             borderRadius="lg"
-        //             borderStyle="dashed"
-        //             borderColor="gray.500"
-        //             width={'40%'}
-        //             textAlign="left"
-        //             p={5}
-        //         >
-        //             <Heading>Instructions</Heading>
-        //             <Text fontWeight={200}>1. This</Text>
-        //             <Text fontWeight={200}>1. That</Text>
-        //             <Text fontWeight={200}>3. This</Text>
-        //         </Box>
-        //         <Box
-        //             borderWidth="2px"
-        //             borderRadius="lg"
-        //             borderStyle="dashed"
-        //             borderColor="gray.500"
-        //             width={'40%'}
-        //             textAlign="left"
-        //             p={5}
-        //         >
-        //             <Heading>Instructions</Heading>
-        //             <Text fontWeight={200}>1. This</Text>
-        //             <Text fontWeight={200}>1. That</Text>
-        //             <Text fontWeight={200}>3. This</Text>
-        //         </Box>
-        //     </Wrap>
-        // </Flex>
     );
 };
 
