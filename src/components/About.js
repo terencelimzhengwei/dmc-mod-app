@@ -114,6 +114,16 @@ const About = () => {
                         Digitama Hatchery Discord <ExternalLinkIcon mx="2px" />
                     </Link>
                 </Text>
+                <Text fontWeight={200}>
+                    5.
+                    <Link
+                        fontWeight={200}
+                        href=" https://github.com/terencelimzhengwei/dmc-mod-app"
+                        isExternal
+                    >
+                        Github Repository for this app <ExternalLinkIcon mx="2px" />
+                    </Link>
+                </Text>
             </GridItem>
             <GridItem
                 borderWidth="2px"
