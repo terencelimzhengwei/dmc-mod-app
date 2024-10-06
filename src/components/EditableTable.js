@@ -109,7 +109,7 @@ const generateCharacters = (charInfos, imageDatas) => {
                     : null,
             AltAttackImage:
                 info.AltAttackSprite < imageDatas.length
-                    ? imageDatas[info.AltAttackSprite].url
+                    ? imageDatas[info.AltAttackSprite + 1].url
                     : null,
         };
     });
@@ -123,7 +123,7 @@ const generateCharacter = (previousCharacter, imageDatas) => {
             imageDatas[previousCharacter.attributes.AttackSprite + 1].url,
         AltAttackImage:
             previousCharacter.attributes.AltAttackSprite < imageDatas.length
-                ? imageDatas[previousCharacter.attributes.AltAttackSprite].url
+                ? imageDatas[previousCharacter.attributes.AltAttackSprite + 1].url
                 : null,
     };
 };
