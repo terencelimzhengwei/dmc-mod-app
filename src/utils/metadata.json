@@ -11,7 +11,9 @@
         "CharasStartIndex": 210,
         "NumJogressCharas": 0,
         "StatTableLocation": "0x117aa",
-        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"],
+        "QuestModeLocation": "0xc25e",
+        "QuestMode": {"levels":8,"enemies":5,"attributes":["CharacterID","Power"]}
     },
     "dmc2":
     {
@@ -25,7 +27,9 @@
         "CharasStartIndex": 210,
         "NumJogressCharas": 1,
         "StatTableLocation": "0x11590",
-        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"],
+        "QuestModeLocation": "0xc044",
+        "QuestMode": {"levels":8,"enemies":5,"attributes":["CharacterID","Power"]}
     },
     "dmc3":
     {
@@ -39,7 +43,9 @@
         "CharasStartIndex": 210,
         "NumJogressCharas": 0,
         "StatTableLocation": "0x11d58",
-        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"],
+        "QuestModeLocation": "0xc25e",
+        "QuestMode": {"levels":8,"enemies":5,"attributes":["CharacterID","Power"]}
     },
     "dmc4":
     {
@@ -53,7 +59,9 @@
         "CharasStartIndex": 210,
         "NumJogressCharas": 1,
         "StatTableLocation": "0x11b78",
-        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"],
+        "QuestModeLocation": "0xc25e",
+        "QuestMode": {"levels":8,"enemies":5,"attributes":["CharacterID","Power"]}
     },
     "dmc5":
     {
@@ -67,7 +75,9 @@
         "CharasStartIndex": 210,
         "NumJogressCharas": 2,
         "StatTableLocation": "0x11ba2",
-        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"],
+        "QuestModeLocation": "0xc25e",
+        "QuestMode": {"levels":8,"enemies":5,"attributes":["CharacterID","Power"]}
     },
     "penc1":
     {

@@ -3,6 +3,31 @@ import { arrayBufferToImageData } from './imageUtils';
 import metadata from './metadata.json';
 import firmwareChecker from './firmwareChecker';
 
+const getQuestInfos = (arrayBuffer, spriteMetadata) => {
+    const { QuestModeLocation, QuestMode } = spriteMetadata;
+    const { levels, enemies, attributes } = QuestMode;
+    const data = new DataView(arrayBuffer.slice(0));
+    let offset = Number(QuestModeLocation);
+    const questMode = [];
+    for (let i = 0; i < levels; i++) {
+        const level = [];
+        for (let j = 0; j < enemies; j++) {
+            const enemy = {};
+            attributes.forEach((a, index) => {
+                const offsetValue =
+                    offset +
+                    i * enemies * 2 +
+                    j * 2 * attributes.length +
+                    index * 2;
+                enemy[a] = data.getUint16(offsetValue, true);
+            });
+            level.push({ ...enemy });
+        }
+        questMode.push([...level]);
+    }
+    return questMode;
+};
+
 const getCharInfos = (arrayBuffer, spriteMetadata) => {
     const data = new DataView(arrayBuffer.slice(0));
     let offset = Number(spriteMetadata.StatTableLocation);
@@ -128,15 +153,17 @@ const downloadBIN = (arrayBuffer, filename = 'output.bin') => {
 };
 
 const init = async arrayBuffer => {
-    const buffer = arrayBuffer;
+    const buffer = arrayBuffer.slice(0);
     const firmware = await firmwareChecker(buffer);
     if (!firmware) {
         return null;
     }
     const spriteMetadata = firmware ? metadata[firmware.id] : null;
     const imageInfos = getImageInfos(buffer, spriteMetadata);
-    const imageDatas = getImages(arrayBuffer, spriteMetadata, imageInfos);
+    const imageDatas = getImages(buffer, spriteMetadata, imageInfos);
     const charInfos = getCharInfos(buffer, spriteMetadata);
+    const questMode = getQuestInfos(buffer, spriteMetadata);
+    console.log(questMode);
     return {
         buffer,
         firmware,
@@ -144,6 +171,7 @@ const init = async arrayBuffer => {
         imageInfos,
         imageDatas,
         charInfos,
+        questMode,
     };
 };
 

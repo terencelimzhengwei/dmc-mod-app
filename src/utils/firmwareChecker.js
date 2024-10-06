@@ -19,12 +19,6 @@ const firmwareChecker = async arrayBuffer => {
                         region.startOffset,
                         region.endOffset + 1
                     );
-                    console.log(
-                        Array.from(calculatedHash, byte =>
-                            byte.toString(16).padStart(2, '0')
-                        ).join(',0x')
-                    );
-                    // console.log(calculatedHash)
                     const match = calculatedHash.every(
                         (value, index) => value === region.hash[index]
                     );
