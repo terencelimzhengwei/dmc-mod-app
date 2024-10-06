@@ -11,7 +11,7 @@
         "CharasStartIndex": 210,
         "NumJogressCharas": 0,
         "StatTableLocation": "0x117aa",
-        "Stats": ["SpriteID","Stage","MinWeight","MaxStamina","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
     },
     "dmc2":
     {
@@ -25,7 +25,7 @@
         "CharasStartIndex": 210,
         "NumJogressCharas": 1,
         "StatTableLocation": "0x11590",
-        "Stats": ["SpriteID","Stage","MinWeight","MaxStamina","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
     },
     "dmc3":
     {
@@ -39,7 +39,7 @@
         "CharasStartIndex": 210,
         "NumJogressCharas": 0,
         "StatTableLocation": "0x11d58",
-        "Stats": ["SpriteID","Stage","MinWeight","MaxStamina","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
     },
     "dmc4":
     {
@@ -53,7 +53,7 @@
         "CharasStartIndex": 210,
         "NumJogressCharas": 1,
         "StatTableLocation": "0x11b78",
-        "Stats": ["SpriteID","Stage","MinWeight","MaxStamina","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
     },
     "dmc5":
     {
@@ -67,7 +67,7 @@
         "CharasStartIndex": 210,
         "NumJogressCharas": 2,
         "StatTableLocation": "0x11ba2",
-        "Stats": ["SpriteID","Stage","MinWeight","MaxStamina","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "Stats": ["SpriteID","Stage","MaxStamina","MinWeight","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
     },
     "penc1":
     {
@@ -80,8 +80,8 @@
         "NumFramesPerChara": 12,
         "CharasStartIndex": 240,
         "NumJogressCharas": 0,
-        "StatTableLocation": "0x020130",
-        "Stats": ["SpriteID","Stage","MinWeight","MaxStamina","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "StatTableLocation": "0x02013E",
+        "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"]
     },
     "penc2":
     {
@@ -94,8 +94,8 @@
         "NumFramesPerChara": 12,
         "CharasStartIndex": 240,
         "NumJogressCharas": 0,
-        "StatTableLocation": "0x20130",
-        "Stats": ["SpriteID","Stage","MinWeight","MaxStamina","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "StatTableLocation": "0x2013E",
+        "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"]
     },
     "penc3":
     {
@@ -108,8 +108,8 @@
         "NumFramesPerChara": 12,
         "CharasStartIndex": 240,
         "NumJogressCharas": 0,
-        "StatTableLocation": "0x20130",
-        "Stats": ["SpriteID","Stage","MinWeight","MaxStamina","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "StatTableLocation": "0x2013E",
+        "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"]
     },
     "penc4":
     {
@@ -122,8 +122,8 @@
         "NumFramesPerChara": 12,
         "CharasStartIndex": 240,
         "NumJogressCharas": 0,
-        "StatTableLocation": "0x20130",
-        "Stats": ["SpriteID","Stage","MinWeight","MaxStamina","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "StatTableLocation": "0x2013E",
+        "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"]
     },
     "penc5":
     {
@@ -136,8 +136,8 @@
         "NumFramesPerChara": 12,
         "CharasStartIndex": 240,
         "NumJogressCharas": 0,
-        "StatTableLocation": "0x20130",
-        "Stats": ["SpriteID","Stage","MinWeight","MaxStamina","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "StatTableLocation": "0x2013E",
+        "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"]
     },
     "penc0":
     {
@@ -150,7 +150,7 @@
         "NumFramesPerChara": 12,
         "CharasStartIndex": 240,
         "NumJogressCharas": 0,
-        "StatTableLocation": "0x20130",
-        "Stats": ["SpriteID","Stage","MinWeight","MaxStamina","EvoTime","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","StrengthDecayTimer","PoopTimer","HealAmount","Attribute","Power","AttackSprite","AltAttackSprite"]
+        "StatTableLocation": "0x2013E",
+        "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"]
     }
 }

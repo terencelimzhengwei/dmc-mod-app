@@ -81,7 +81,7 @@ const getImages = (arrayBuffer, spriteMetadata, imageInfos) => {
 
 async function rebuild(data) {
     const buffer = data.buffer.slice(0);
-    const dataView = new DataView(buffer)
+    const dataView = new DataView(buffer);
     const spriteMetadata = data.spriteMetadata;
     const view = new Uint8Array(buffer);
     const imageInfos = data.imageInfos;
@@ -100,10 +100,14 @@ async function rebuild(data) {
     const statLength = spriteMetadata.Stats.length;
     charInfos.forEach((info, charIndex) => {
         Object.keys(info).forEach((key, statIndex) => {
-            dataView.setUint16(statOffset+charIndex*statLength*2+statIndex*2,info[key],true)
-        })
-    })
-    
+            dataView.setUint16(
+                statOffset + charIndex * statLength * 2 + statIndex * 2,
+                info[key],
+                true
+            );
+        });
+    });
+
     return buffer;
 }
 

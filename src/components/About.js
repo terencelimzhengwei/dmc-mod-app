@@ -48,23 +48,22 @@ const About = () => {
             >
                 <Heading>Features coming soon</Heading>
                 <Text fontWeight={200}>
-                    1. Improve re-rendering performance so that app feels less laggy
+                    1. Improve re-rendering performance so that app feels less
+                    laggy
+                </Text>
+                <Text fontWeight={200}>2. Add update quest mode feature</Text>
+                <Text fontWeight={200}>
+                    3. Improve error handling so that user does not input
+                    incorrect values
                 </Text>
                 <Text fontWeight={200}>
-                    2. Add update quest mode feature
-                </Text>
-                <Text fontWeight={200}>
-                    3. Improve error handling so that user does not input incorrect values
-                </Text>
-                <Text fontWeight={200}>
-                    4. Add Sprite Library so that user can easily replace Sprites
+                    4. Add Sprite Library so that user can easily replace
+                    Sprites
                 </Text>
                 <Text fontWeight={200}>
                     5. Support for custom offsets / image sizes
                 </Text>
-                <Text fontWeight={200}>
-                    6. Add support for PenC wave 2
-                </Text>
+                <Text fontWeight={200}>6. Add support for PenC wave 2</Text>
             </GridItem>
             <GridItem
                 borderWidth="2px"
@@ -121,7 +120,8 @@ const About = () => {
                         href=" https://github.com/terencelimzhengwei/dmc-mod-app"
                         isExternal
                     >
-                        Github Repository for this app <ExternalLinkIcon mx="2px" />
+                        Github Repository for this app{' '}
+                        <ExternalLinkIcon mx="2px" />
                     </Link>
                 </Text>
             </GridItem>

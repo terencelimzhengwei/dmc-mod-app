@@ -97,58 +97,18 @@ const EditableRow = ({
     );
 };
 
-// const EditableRow = memo(({ row, rowIndex, editRowIndex, editedRowData, handleSaveClick, handleEditClick, handleInputChange }) => {
-//     return (
-//         <Tr key={`row-${rowIndex}`}>
-//             <Td textAlign="center" verticalAlign="middle">
-//                 <ImageCell rowIndex={rowIndex} src={row.SpriteImage}/>
-//             </Td>
-//             <Td textAlign="center" verticalAlign="middle">
-//                 <ImageCell rowIndex={rowIndex} src={row.AttackImage}/>
-//             </Td>
-//             <Td textAlign="center" verticalAlign="middle">
-//                 {row.AltAttackImage ? (
-//                     <ImageCell rowIndex={rowIndex} src={row.AltAttackImage}/>
-//                 ) : null}
-//             </Td>
-//             {Object.keys(row.attributes).map(key => (
-//                 <EditableCell
-//                     index={key}
-//                     inputValue={editedRowData ? editedRowData.attributes[key]:null}
-//                     rawValue={row.attributes[key]}
-//                     editRowIndex={editRowIndex}
-//                     rowIndex={rowIndex}
-//                     handleInputChange={handleInputChange}
-//                 />
-//             ))}
-//             <Td textAlign="center" verticalAlign="middle">
-//                 {editRowIndex === rowIndex ? (
-//                     <IconButton
-//                         icon={<CheckIcon />}
-//                         onClick={handleSaveClick}
-//                         aria-label="Save"
-//                         size="sm"
-//                     />
-//                 ) : (
-//                     <IconButton
-//                         icon={<EditIcon />}
-//                         onClick={() => handleEditClick(rowIndex, row)}
-//                         aria-label="Edit"
-//                         size="sm"
-//                     />
-//                 )}
-//             </Td>
-//         </Tr>
-//     );
-//   });
-
 const generateCharacters = (charInfos, imageDatas) => {
+    console.log(imageDatas);
+    console.log(charInfos);
     return charInfos.map((info, index) => {
         return {
             index,
             attributes: info,
             SpriteImage: imageDatas[info.SpriteID].url,
-            AttackImage: imageDatas[info.AttackSprite + 1].url,
+            AttackImage:
+                info.AttackSprite < imageDatas.length
+                    ? imageDatas[info.AttackSprite].url
+                    : null,
             AltAttackImage:
                 info.AltAttackSprite < imageDatas.length
                     ? imageDatas[info.AltAttackSprite].url
@@ -221,23 +181,11 @@ const EditableTable = ({ data, updateCharInfos }) => {
                         <Th textAlign="center">Sprite</Th>
                         <Th textAlign="center">AtkSprite</Th>
                         <Th textAlign="center">AltAtkSprite</Th>
-                        <Th textAlign="center">SpriteID</Th>
-                        <Th textAlign="center">Stage</Th>
-                        <Th textAlign="center">MinWeight</Th>
-                        <Th textAlign="center">MaxStamina</Th>
-                        <Th textAlign="center">EvoTime</Th>
-                        <Th textAlign="center">SleepHour</Th>
-                        <Th textAlign="center">SleepMin</Th>
-                        <Th textAlign="center">WakeHour</Th>
-                        <Th textAlign="center">WakeMin</Th>
-                        <Th textAlign="center">HungerTimer</Th>
-                        <Th textAlign="center">StrengthDecayTimer</Th>
-                        <Th textAlign="center">PoopTimer</Th>
-                        <Th textAlign="center">HealAmount</Th>
-                        <Th textAlign="center">Attribute</Th>
-                        <Th textAlign="center">Power</Th>
-                        <Th textAlign="center">AttackSprite</Th>
-                        <Th textAlign="center">AltAttackSprite</Th>
+                        {data.spriteMetadata.Stats.map((stat, index) => (
+                            <Th key={`header-${index}`} textAlign="center">
+                                {stat}
+                            </Th>
+                        ))}
                         <Th textAlign="center">Edit</Th>
                     </Tr>
                 </Thead>
