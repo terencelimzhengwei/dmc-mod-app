@@ -48,8 +48,6 @@ const StageCard = ({ stage, stageIndex, updateStage }) => {
             borderStyle="dashed"
             borderColor="gray.500"
             borderRadius="lg"
-            bg="gray.800"
-            color="white"
             boxShadow="md"
             gap={10}
         >
