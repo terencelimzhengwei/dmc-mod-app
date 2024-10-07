@@ -39,7 +39,7 @@ function App() {
     };
 
     const buildClick = async () => {
-        const buffer = await rebuild(data);
+        const buffer = await rebuild(data, data.firmware.name.includes('penc'));
         const newData = { ...data, buffer: buffer.slice(0) };
         setData(newData);
         downloadBIN(newData.buffer);

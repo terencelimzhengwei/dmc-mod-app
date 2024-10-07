@@ -15,8 +15,8 @@ const UpdateQuest = ({ data, updateQuests }) => {
             >
                 <Heading>Update Quest Mode</Heading>
                 <Text fontWeight={200}>
-                    To update quest mode, click the edit button, change the
-                    information accordingly and save.
+                    To update quest mode, click the edit stage button, change
+                    the information accordingly and save.
                 </Text>
             </Box>
             <QuestTable data={data} updateQuests={updateQuests} />

@@ -38,7 +38,6 @@ const StageCard = ({ stage, stageIndex, updateStage }) => {
                   }
                 : character
         );
-        console.log(newStageData);
         setStageData(newStageData);
     };
 
@@ -92,15 +91,9 @@ const StageCard = ({ stage, stageIndex, updateStage }) => {
                                             size="xs"
                                             textAlign={'center'}
                                             defaultValue={
-                                                attributeKey === 'Pattern'
-                                                    ? valueToPattern(
-                                                          character.attributes[
-                                                              attributeKey
-                                                          ]
-                                                      )
-                                                    : character.attributes[
-                                                          attributeKey
-                                                      ]
+                                                character.attributes[
+                                                    attributeKey
+                                                ]
                                             }
                                             onChange={e =>
                                                 handleInputChange(

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Wrap, WrapItem } from '@chakra-ui/react';
 import StageCard from './StageCard'; // Import the new StageCard component
-import { pattern } from '../config/pattern';
 
 const generateQuests = (questMode, charInfos, imageDatas) => {
     return questMode.map(level =>
@@ -26,7 +25,6 @@ const QuestTable = ({ data, updateQuests }) => {
         const newQuestMode = questMode.map((stage, i) =>
             stageIndex === i ? updatedValues : stage
         );
-        console.log(newQuestMode);
         const newData = { ...data, questMode: newQuestMode };
         updateQuests(newData);
     };
