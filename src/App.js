@@ -77,6 +77,18 @@ function App() {
         });
     };
 
+    const updateQuests = data => {
+        setData(data);
+        toast({
+            title: 'Quests Updated',
+            description: 'Your quests changes have been updated',
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+            position: 'bottom-right',
+        });
+    };
+
     const handleUpload = async arrayBuffer => {
         const originalData = await init(arrayBuffer);
         if (!originalData || !originalData.firmware) {
@@ -142,7 +154,9 @@ function App() {
                     {page === 2 ? (
                         <UpdateStats data={data} updateData={updateStats} />
                     ) : null}
-                    {page === 3 ? <UpdateQuest data={data} /> : null}
+                    {page === 3 ? (
+                        <UpdateQuest data={data} updateQuests={updateQuests} />
+                    ) : null}
                     {page === 4 ? <About /> : null}
                 </Flex>
             </Box>

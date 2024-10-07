@@ -1,7 +1,7 @@
 import { Flex, Box, Text, Heading } from '@chakra-ui/react';
 import QuestTable from './QuestTable';
 
-const UpdateQuest = ({ data }) => {
+const UpdateQuest = ({ data, updateQuests }) => {
     return (
         <Flex flexDir={'column'} align={'center'} gap={4}>
             <Box
@@ -19,7 +19,7 @@ const UpdateQuest = ({ data }) => {
                     information accordingly and save.
                 </Text>
             </Box>
-            <QuestTable data={data} />
+            <QuestTable data={data} updateQuests={updateQuests} />
         </Flex>
     );
 };
