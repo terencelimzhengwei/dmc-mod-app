@@ -46,11 +46,22 @@ const EditableRow = ({
     row,
     rowIndex,
     editRowIndex,
-    editedRowData,
     handleSaveClick,
     handleEditClick,
-    handleInputChange,
 }) => {
+    const [localRowData, setLocalRowData] = useState(row.attributes); // Local state for row data
+
+    const handleInputChange = (e, key) => {
+        setLocalRowData({
+            ...localRowData,
+            [key]: Number(e.target.value),
+        });
+    };
+
+    const saveChanges = () => {
+        handleSaveClick(rowIndex, localRowData);
+    };
+
     return (
         <Tr key={`row-${rowIndex}`}>
             <Td textAlign="center" verticalAlign="middle">
@@ -68,9 +79,7 @@ const EditableRow = ({
                 <Td key={`td-${key}`} textAlign="center" verticalAlign="middle">
                     <EditableCell
                         index={key}
-                        inputValue={
-                            editedRowData ? editedRowData.attributes[key] : null
-                        }
+                        inputValue={localRowData[key]}
                         rawValue={row.attributes[key]}
                         isEdit={editRowIndex === rowIndex}
                         handleInputChange={handleInputChange}
@@ -81,7 +90,7 @@ const EditableRow = ({
                 {editRowIndex === rowIndex ? (
                     <IconButton
                         icon={<CheckIcon />}
-                        onClick={handleSaveClick}
+                        onClick={saveChanges}
                         aria-label="Save"
                         size="sm"
                     />
@@ -116,16 +125,18 @@ const generateCharacters = (charInfos, imageDatas) => {
     });
 };
 
-const generateCharacter = (previousCharacter, imageDatas) => {
+const generateCharacter = (previousCharacter, newAttributes, imageDatas) => {
     return {
         ...previousCharacter,
-        SpriteImage: imageDatas[previousCharacter.attributes.SpriteID].url,
+        attributes: newAttributes,
+        SpriteImage: imageDatas[newAttributes.SpriteID].url,
         AttackImage:
-            imageDatas[previousCharacter.attributes.AttackSprite + 1].url,
+            newAttributes.AttackSprite < imageDatas.length
+                ? imageDatas[newAttributes.AttackSprite + 1].url
+                : null,
         AltAttackImage:
-            previousCharacter.attributes.AltAttackSprite < imageDatas.length
-                ? imageDatas[previousCharacter.attributes.AltAttackSprite + 1]
-                      .url
+            newAttributes.AltAttackSprite < imageDatas.length
+                ? imageDatas[newAttributes.AltAttackSprite + 1].url
                 : null,
     };
 };
@@ -136,35 +147,23 @@ const EditableTable = ({ data, updateCharInfos }) => {
         generateCharacters(charInfos, imageDatas)
     );
     const [editRowIndex, setEditRowIndex] = useState(null);
-    const [editedRowData, setEditedRowData] = useState(null); // For temporary edits
 
     const handleEditClick = (index, rowData) => {
         setEditRowIndex(index);
-        setEditedRowData(rowData); // Store the initial row data before editing
     };
 
-    const handleSaveClick = () => {
+    const handleSaveClick = (rowIndex, newAttributes) => {
         const updatedTableData = [...tableData];
-        updatedTableData[editRowIndex] = generateCharacter(
-            editedRowData,
+        updatedTableData[rowIndex] = generateCharacter(
+            updatedTableData[rowIndex],
+            newAttributes,
             imageDatas
         ); // Apply changes from editedRowData to tableData
         setTableData(updatedTableData);
         const attributes = updatedTableData.map(row => row.attributes);
         const updatedData = { ...data, charInfos: attributes };
         updateCharInfos(updatedData);
-        setEditRowIndex(null);
-        setEditedRowData(null); // Reset temporary data after saving
-    };
-
-    const handleInputChange = (e, key) => {
-        setEditedRowData({
-            ...editedRowData,
-            attributes: {
-                ...editedRowData.attributes,
-                [key]: Number(e.target.value),
-            },
-        });
+        setEditRowIndex(null); // Reset editRowIndex after saving
     };
 
     return (
@@ -196,10 +195,8 @@ const EditableTable = ({ data, updateCharInfos }) => {
                             row={row}
                             rowIndex={rowIndex}
                             editRowIndex={editRowIndex}
-                            editedRowData={editedRowData}
                             handleSaveClick={handleSaveClick}
                             handleEditClick={handleEditClick}
-                            handleInputChange={handleInputChange}
                         />
                     ))}
                 </Tbody>
