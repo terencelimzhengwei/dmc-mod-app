@@ -88,6 +88,7 @@ const StageCard = ({ stage, stageIndex, updateStage }) => {
                                         // Input field in edit mode
                                         <Input
                                             width={'100px'}
+                                            height={'20px'}
                                             size="xs"
                                             textAlign={'center'}
                                             defaultValue={
@@ -105,7 +106,11 @@ const StageCard = ({ stage, stageIndex, updateStage }) => {
                                         />
                                     ) : (
                                         // Render static text in non-edit mode
-                                        <Text fontSize={'xs'} width={'100px'}>
+                                        <Text
+                                            fontSize={'xs'}
+                                            width={'100px'}
+                                            height={'20px'}
+                                        >
                                             {attributeKey === 'Pattern'
                                                 ? valueToPattern(
                                                       character.attributes[
