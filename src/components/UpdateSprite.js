@@ -107,7 +107,11 @@ const UpdateSprite = props => {
                         fontSize={'xs'}
                     >{`ID: ${index} (${image.imageData.width}x${image.imageData.height})`}</Text>
                     <Center h={'80%'}>
-                        <Image src={image.url} alt={`Sprite ${index}`} />
+                        <Image
+                            src={image.url}
+                            alt={`Sprite ${index}`}
+                            fallbackSrc="https://via.placeholder.com/48"
+                        />
                     </Center>
                 </VStack>
             </WrapItem>

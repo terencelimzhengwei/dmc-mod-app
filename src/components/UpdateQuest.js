@@ -1,4 +1,5 @@
 import { Flex, Box, Text, Heading } from '@chakra-ui/react';
+import QuestTable from './QuestTable';
 
 const UpdateQuest = ({ data }) => {
     return (
@@ -18,7 +19,7 @@ const UpdateQuest = ({ data }) => {
                     information accordingly and save.
                 </Text>
             </Box>
-            <Text fontWeight={200}>Feature Coming Soon...</Text>
+            <QuestTable data={data} />
         </Flex>
     );
 };

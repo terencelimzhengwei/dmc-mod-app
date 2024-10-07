@@ -1,13 +1,13 @@
 import { arrayBufferToImageData } from './imageUtils';
 // import JSZip from 'jszip';
-import metadata from './metadata.json';
+import metadata from '../config/metadata.json';
 import firmwareChecker from './firmwareChecker';
 
-const getQuestInfos = (arrayBuffer, spriteMetadata) => {
+const getQuestInfos = (arrayBuffer, spriteMetadata, isPenc = false) => {
     const { QuestModeLocation, QuestMode } = spriteMetadata;
     const { levels, enemies, attributes } = QuestMode;
     const data = new DataView(arrayBuffer.slice(0));
-    let offset = Number(QuestModeLocation);
+    const offset = Number(QuestModeLocation);
     const questMode = [];
     for (let i = 0; i < levels; i++) {
         const level = [];
@@ -16,8 +16,9 @@ const getQuestInfos = (arrayBuffer, spriteMetadata) => {
             attributes.forEach((a, index) => {
                 const offsetValue =
                     offset +
-                    i * enemies * 2 +
-                    j * 2 * attributes.length +
+                    (isPenc ? i * 16 : 0) +
+                    i * enemies * attributes.length * 2 +
+                    j * attributes.length * 2 +
                     index * 2;
                 enemy[a] = data.getUint16(offsetValue, true);
             });
@@ -162,8 +163,11 @@ const init = async arrayBuffer => {
     const imageInfos = getImageInfos(buffer, spriteMetadata);
     const imageDatas = getImages(buffer, spriteMetadata, imageInfos);
     const charInfos = getCharInfos(buffer, spriteMetadata);
-    const questMode = getQuestInfos(buffer, spriteMetadata);
-    console.log(questMode);
+    const questMode = getQuestInfos(
+        buffer,
+        spriteMetadata,
+        firmware.id.includes('penc')
+    );
     return {
         buffer,
         firmware,

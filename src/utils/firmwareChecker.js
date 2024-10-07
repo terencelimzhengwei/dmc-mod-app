@@ -1,4 +1,4 @@
-import FIRMWARES from './firmware';
+import FIRMWARES from '../config/firmware';
 
 const hashData = (data, start, end) => {
     const slice = data.buffer.slice(start, end);

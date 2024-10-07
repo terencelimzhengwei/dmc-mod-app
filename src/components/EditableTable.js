@@ -34,6 +34,7 @@ const ImageCell = memo(({ rowIndex, src }) => (
     <Box display="flex" justifyContent="center" alignItems="center">
         <Image
             key={`${rowIndex}-SpriteImage`}
+            fallbackSrc="https://via.placeholder.com/48"
             src={src}
             alt="Sprite"
             boxSize="30px"

@@ -66,7 +66,6 @@ function App() {
     };
 
     const updateStats = data => {
-        console.log(data);
         setData(data);
         toast({
             title: 'Stats Updated',

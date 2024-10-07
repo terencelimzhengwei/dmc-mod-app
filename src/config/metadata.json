@@ -93,7 +93,7 @@
         "StatTableLocation": "0x02013E",
         "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"],
         "QuestModeLocation": "0x1a044",
-        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Pattern"]}
+        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Handicap","Pattern"]}
     },
     "penc2":
     {
@@ -109,7 +109,7 @@
         "StatTableLocation": "0x2013E",
         "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"],
         "QuestModeLocation": "0x1a002",
-        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Pattern"]}
+        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Handicap","Pattern"]}
     },
     "penc3":
     {
@@ -125,7 +125,7 @@
         "StatTableLocation": "0x2013E",
         "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"],
         "QuestModeLocation": "0x1a008",
-        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Pattern"]}
+        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Handicap","Pattern"]}
     },
     "penc4":
     {
@@ -141,7 +141,7 @@
         "StatTableLocation": "0x2013E",
         "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"],
         "QuestModeLocation": "0x1a622",
-        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Pattern"]}
+        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Handicap","Pattern"]}
     },
     "penc5":
     {
@@ -157,7 +157,7 @@
         "StatTableLocation": "0x2013E",
         "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"],
         "QuestModeLocation": "0x1a62e",
-        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Pattern"]}
+        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Handicap","Pattern"]}
     },
     "penc0":
     {
@@ -173,6 +173,6 @@
         "StatTableLocation": "0x2013E",
         "Stats": ["SpriteID","Stage","Attribute","MinWeight","Power","SleepHour","SleepMin","WakeHour","WakeMin","HungerTimer","EvoTime","PoopTimer","JogressAvailable","AlbumNumber", "DefaultAlbumOpen","DP","MissCareMax","AttackSprite"],
         "QuestModeLocation": "0x1a7e0",
-        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Pattern"]}
+        "QuestMode": {"levels":10,"enemies":3,"attributes":["CharacterID","Power","Handicap","Pattern"]}
     }
 }
