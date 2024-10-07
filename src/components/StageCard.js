@@ -48,7 +48,6 @@ const StageCard = ({ stage, stageIndex, updateStage }) => {
             borderStyle="dashed"
             borderColor="gray.500"
             borderRadius="lg"
-            boxShadow="md"
             gap={10}
         >
             <Text fontWeight="bold" fontSize="2xl" textAlign="center" mb={4}>
@@ -60,7 +59,6 @@ const StageCard = ({ stage, stageIndex, updateStage }) => {
                         key={charIndex}
                         direction="column"
                         align="center"
-                        boxShadow="sm"
                     >
                         <Box>
                             <Center>
