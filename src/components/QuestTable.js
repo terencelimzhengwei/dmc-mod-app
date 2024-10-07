@@ -120,6 +120,7 @@ const QuestTable = ({ data, updateQuest }) => {
                                                     <Input
                                                         width={'100px'}
                                                         size="xs"
+                                                        textAlign={'center'}
                                                         defaultValue={
                                                             attributeKey ===
                                                             'Pattern'
