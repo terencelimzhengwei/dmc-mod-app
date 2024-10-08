@@ -17,7 +17,7 @@ const generateQuests = (questMode, charInfos, imageDatas) => {
 };
 
 const QuestTable = ({ data, updateQuests }) => {
-    const { questMode, charInfos, imageDatas } = data;
+    const { questMode, charInfos, imageDatas, firmware } = data;
     const quests = generateQuests(questMode, charInfos, imageDatas);
 
     // Handle saving updates from StageCard
@@ -38,6 +38,7 @@ const QuestTable = ({ data, updateQuests }) => {
                         stageIndex={stageIndex}
                         numChars={charInfos.length}
                         updateStage={updateStage}
+                        isPenc={firmware.id.includes('penc')}
                     />
                 </WrapItem>
             ))}
