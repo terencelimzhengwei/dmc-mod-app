@@ -26,7 +26,7 @@ function App() {
     const [page, setPage] = useState(0);
     const [originalData, setOriginalData] = useState(null);
     const [data, setData] = useState(null);
-    const [patchFiles, setPatchFiles] = useState([])
+    // const [patchFiles, setPatchFiles] = useState([])
     const toast = useToast();
 
     const navClick = p => {
