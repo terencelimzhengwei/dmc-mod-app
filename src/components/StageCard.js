@@ -8,10 +8,11 @@ import {
     Stack,
     Flex,
     Center,
+    Select,
 } from '@chakra-ui/react';
-import { valueToPattern } from '../config/pattern';
+import { pattern, valueToPattern } from '../config/pattern';
 
-const StageCard = ({ stage, stageIndex, updateStage }) => {
+const StageCard = ({ stage, stageIndex, numChars, updateStage }) => {
     const [editStage, setEditStage] = useState(false);
     const [stageData, setStageData] = useState(stage);
 
@@ -55,11 +56,7 @@ const StageCard = ({ stage, stageIndex, updateStage }) => {
             </Text>
             <Flex gap={4}>
                 {stage.map((character, charIndex) => (
-                    <Flex
-                        key={charIndex}
-                        direction="column"
-                        align="center"
-                    >
+                    <Flex key={charIndex} direction="column" align="center">
                         <Box>
                             <Center>
                                 <Image
@@ -81,25 +78,74 @@ const StageCard = ({ stage, stageIndex, updateStage }) => {
                                         {attributeKey}
                                     </Text>
                                     {editStage ? (
-                                        // Input field in edit mode
-                                        <Input
-                                            width={'100px'}
-                                            height={'20px'}
-                                            size="xs"
-                                            textAlign={'center'}
-                                            defaultValue={
-                                                character.attributes[
-                                                    attributeKey
-                                                ]
-                                            }
-                                            onChange={e =>
-                                                handleInputChange(
-                                                    e,
-                                                    attributeKey,
-                                                    charIndex
-                                                )
-                                            }
-                                        />
+                                        !['CharacterID', 'Pattern'].includes(
+                                            attributeKey
+                                        ) ? (
+                                            // Input field in edit mode
+                                            <Input
+                                                width={'100px'}
+                                                height={'20px'}
+                                                size="xs"
+                                                textAlign={'center'}
+                                                defaultValue={
+                                                    character.attributes[
+                                                        attributeKey
+                                                    ]
+                                                }
+                                                onChange={e =>
+                                                    handleInputChange(
+                                                        e,
+                                                        attributeKey,
+                                                        charIndex
+                                                    )
+                                                }
+                                            />
+                                        ) : (
+                                            <Select
+                                                size="xs"
+                                                width={'100px'}
+                                                height={'20px'}
+                                                defaultValue={
+                                                    character.attributes[
+                                                        attributeKey
+                                                    ]
+                                                }
+                                                onChange={e =>
+                                                    handleInputChange(
+                                                        e,
+                                                        attributeKey,
+                                                        charIndex
+                                                    )
+                                                }
+                                            >
+                                                {attributeKey === 'Pattern'
+                                                    ? Object.keys(pattern).map(
+                                                          p => (
+                                                              <option
+                                                                  value={
+                                                                      pattern[p]
+                                                                  }
+                                                                  align={
+                                                                      'center'
+                                                                  }
+                                                              >
+                                                                  {p}
+                                                              </option>
+                                                          )
+                                                      )
+                                                    : Array.from(
+                                                          { length: numChars },
+                                                          (_, i) => i
+                                                      ).map(index => (
+                                                          <option
+                                                              value={index}
+                                                              align={'center'}
+                                                          >
+                                                              {index}
+                                                          </option>
+                                                      ))}
+                                            </Select>
+                                        )
                                     ) : (
                                         // Render static text in non-edit mode
                                         <Text

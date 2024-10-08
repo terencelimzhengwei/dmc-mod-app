@@ -36,6 +36,7 @@ const QuestTable = ({ data, updateQuests }) => {
                     <StageCard
                         stage={stage}
                         stageIndex={stageIndex}
+                        numChars={charInfos.length}
                         updateStage={updateStage}
                     />
                 </WrapItem>
