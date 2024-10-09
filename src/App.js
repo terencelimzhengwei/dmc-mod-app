@@ -26,6 +26,7 @@ function App() {
     const [page, setPage] = useState(0);
     const [originalData, setOriginalData] = useState(null);
     const [data, setData] = useState(null);
+    // const [patchFiles, setPatchFiles] = useState([])
     const toast = useToast();
 
     const navClick = p => {
@@ -39,7 +40,7 @@ function App() {
     };
 
     const buildClick = async () => {
-        const buffer = await rebuild(data, data.firmware.name.includes('penc'));
+        const buffer = await rebuild(data, data.firmware.id.includes('penc'));
         const newData = { ...data, buffer: buffer.slice(0) };
         setData(newData);
         downloadBIN(newData.buffer);
