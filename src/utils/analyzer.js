@@ -108,37 +108,36 @@ const getImages = (arrayBuffer, spriteMetadata, imageInfos) => {
 async function rebuild(data, isPenc = false) {
     const buffer = data.buffer.slice(0);
     const dataView = new DataView(buffer);
-    const spriteMetadata = data.spriteMetadata;
+    const { spriteMetadata, imageInfos, charInfos, questMode, imageDatas } = data;
     const view = new Uint8Array(buffer);
-    const imageInfos = data.imageInfos;
-    const charInfos = data.charInfos;
-    const questMode = data.questMode;
 
+    // Update image data
     imageInfos.forEach((img, i) => {
-        const { dataOffset } = img;
-        const newImageView = new Uint8Array(data.imageDatas[i].rgb565);
+        const newImageView = new Uint8Array(imageDatas[i].rgb565);
         view.set(
             newImageView,
-            Number(spriteMetadata.SpritePackBase) + dataOffset
+            Number(spriteMetadata.SpritePackBase) + img.dataOffset
         );
     });
 
+    // Update character stats
     const statOffset = Number(spriteMetadata.StatTableLocation);
     const statLength = spriteMetadata.Stats.length;
     charInfos.forEach((info, charIndex) => {
-        Object.keys(info).forEach((key, statIndex) => {
+        Object.entries(info).forEach(([key, value], statIndex) => {
             dataView.setUint16(
-                statOffset + charIndex * statLength * 2 + statIndex * 2,
-                info[key],
+                statOffset + (charIndex * statLength + statIndex) * 2,
+                value,
                 true
             );
         });
     });
 
-    const { QuestModeLocation } = spriteMetadata;
-    const questOffset = Number(QuestModeLocation);
+    // Update quest data
+    const questOffset = Number(spriteMetadata.QuestModeLocation);
     questMode.forEach((stage, stageIndex) => {
         stage.forEach((char, charIndex) => {
+<<<<<<< Updated upstream
             const attributes = Object.keys(char);
             attributes.forEach((attribute, attributeIndex) => {
                 console.log(stageIndex, charIndex, attributeIndex);
@@ -159,6 +158,14 @@ async function rebuild(data, isPenc = false) {
                         attributeIndex * 2 +
                         (isPenc ? stageIndex * 16 : 0),
                     char[attribute],
+=======
+            Object.entries(char).forEach(([attribute, value], attributeIndex) => {
+                dataView.setUint16(
+                    questOffset +
+                        (stageIndex * stage.length + charIndex) * Object.keys(char).length * 2 +
+                        attributeIndex * 2,
+                    value,
+>>>>>>> Stashed changes
                     true
                 );
             });

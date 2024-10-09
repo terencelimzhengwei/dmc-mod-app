@@ -2,31 +2,39 @@ import React from 'react';
 import { Wrap, WrapItem } from '@chakra-ui/react';
 import StageCard from './StageCard'; // Import the new StageCard component
 
-const generateQuests = (questMode, charInfos, imageDatas) => {
-    return questMode.map(level =>
+const generateQuests = (questMode, charInfos, imageDatas, isPenc = false) =>
+    questMode.map(level =>
         level.map(enemy => {
+            const { CharacterID } = enemy;
+            const isValidCharacterID = isPenc
+                ? CharacterID !== 0
+                : CharacterID !== 65535;
+            console.log(CharacterID)
+            console.log(charInfos)
             return {
-                Sprite:
-                    enemy.CharacterID !== 65535
-                        ? imageDatas[charInfos[enemy.CharacterID].SpriteID].url
-                        : null,
+                Sprite: isValidCharacterID
+                    ? imageDatas[charInfos[CharacterID].SpriteID].url
+                    : null,
                 attributes: { ...enemy },
             };
         })
     );
-};
 
 const QuestTable = ({ data, updateQuests }) => {
+<<<<<<< Updated upstream
     const { questMode, charInfos, imageDatas } = data;
     const quests = generateQuests(questMode, charInfos, imageDatas);
+=======
+    const { questMode, charInfos, imageDatas, firmware } = data;
+    const isPenc = firmware.id.includes('penc');
+    const quests = generateQuests(questMode, charInfos, imageDatas, isPenc);
+>>>>>>> Stashed changes
 
     // Handle saving updates from StageCard
     const updateStage = (stageIndex, updatedValues) => {
-        const newQuestMode = questMode.map((stage, i) =>
-            stageIndex === i ? updatedValues : stage
-        );
-        const newData = { ...data, questMode: newQuestMode };
-        updateQuests(newData);
+        const newQuestMode = [...questMode];
+        newQuestMode[stageIndex] = updatedValues;
+        updateQuests({ ...data, questMode: newQuestMode });
     };
 
     return (

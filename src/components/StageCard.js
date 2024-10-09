@@ -12,7 +12,11 @@ import {
 } from '@chakra-ui/react';
 import { pattern, valueToPattern } from '../config/pattern';
 
+<<<<<<< Updated upstream
 const StageCard = ({ stage, stageIndex, numChars, updateStage }) => {
+=======
+const StageCard = ({ stage, stageIndex, numChars, updateStage}) => {
+>>>>>>> Stashed changes
     const [editStage, setEditStage] = useState(false);
     const [stageData, setStageData] = useState(stage);
 
@@ -60,7 +64,11 @@ const StageCard = ({ stage, stageIndex, numChars, updateStage }) => {
                         <Box>
                             <Center>
                                 <Image
+<<<<<<< Updated upstream
                                     src={`${character.Sprite}`}
+=======
+                                    src={character.Sprite}
+>>>>>>> Stashed changes
                                     fallbackSrc="https://via.placeholder.com/48"
                                     alt="Character"
                                     boxSize="35px"
