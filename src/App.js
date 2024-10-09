@@ -10,9 +10,11 @@ import Nav from './components/Nav';
 import UploadBIN from './components/UploadBIN';
 import UpdateSprite from './components/UpdateSprite';
 import { init, rebuild, downloadBIN } from './utils/analyzer';
+import patches from './patch/patches'
 import UpdateStats from './components/UpdateStats';
 import UpdateQuest from './components/UpdateQuest';
 import About from './components/About';
+import Patch from './components/Patch'
 
 // Create a theme with default mode set to dark
 const theme = extendTheme({
@@ -26,7 +28,7 @@ function App() {
     const [page, setPage] = useState(0);
     const [originalData, setOriginalData] = useState(null);
     const [data, setData] = useState(null);
-    // const [patchFiles, setPatchFiles] = useState([])
+    const [patchFiles, setPatchFiles] = useState([])
     const toast = useToast();
 
     const navClick = p => {
@@ -90,6 +92,10 @@ function App() {
         });
     };
 
+    const updatePatches = patches => {
+        setPatchFiles(patches)
+    }
+
     const handleUpload = async arrayBuffer => {
         const originalData = await init(arrayBuffer);
         if (!originalData || !originalData.firmware) {
@@ -110,6 +116,7 @@ function App() {
         ) {
             setOriginalData(originalData);
             setData(originalData);
+            setPatchFiles((originalData.firmware.id in patches & originalData.firmware.regionValid) ? patches[originalData.firmware.id] : [])
             setPage(1);
             toast({
                 title: `${originalData.firmware.name} firmware`,
@@ -123,6 +130,7 @@ function App() {
         } else {
             setOriginalData(originalData);
             setData(originalData);
+            setPatchFiles((originalData.firmware.id in patches & originalData.firmware.regionValid) ? patches[data.firmware.id] : [])
             setPage(1);
             toast({
                 title: `Modified ${originalData.firmware.name} detected`,
@@ -145,6 +153,7 @@ function App() {
                         navClick={navClick}
                         restartClick={restartClick}
                         buildClick={buildClick}
+                        isPatchable={data ? (data.firmware.id in patches & data.firmware.regionValid) : false}
                     />
                     {!originalData & (page === 0) ? (
                         <UploadBIN handleUpload={handleUpload} />
@@ -158,7 +167,10 @@ function App() {
                     {page === 3 ? (
                         <UpdateQuest data={data} updateQuests={updateQuests} />
                     ) : null}
-                    {page === 4 ? <About /> : null}
+                    {page === 4 ? (
+                        <Patch patches={patchFiles} updatePatches={updatePatches} />
+                    ) : null}
+                    {page === 5 ? <About /> : null}
                 </Flex>
             </Box>
         </ChakraProvider>

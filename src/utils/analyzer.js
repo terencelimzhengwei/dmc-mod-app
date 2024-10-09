@@ -2,6 +2,8 @@ import { arrayBufferToImageData } from './imageUtils';
 // import JSZip from 'jszip';
 import metadata from '../config/metadata.json';
 import firmwareChecker from './firmwareChecker';
+import { loadBspatch } from 'bsdiff-wasm';
+
 
 const getQuestInfos = (arrayBuffer, spriteMetadata) => {
     const { QuestModeLocation, QuestMode } = spriteMetadata;
@@ -104,11 +106,26 @@ const getImages = (arrayBuffer, spriteMetadata, imageInfos) => {
 //     downloadFile(URL.createObjectURL(content), 'images.zip')
 // };
 
-async function rebuild(data) {
-    const buffer = data.buffer.slice(0);
-    const dataView = new DataView(buffer);
+async function rebuild(data, patchFiles) {
+    let buffer = data.buffer.slice(0);
     const { spriteMetadata, imageInfos, charInfos, questMode, imageDatas } = data;
+
+    if(patchFiles) {
+        const bspatch = await loadBspatch();
+        for (const patchFile of patchFiles) {
+            const response = await fetch(patchFile);
+            const patchArrayBuffer = await response.arrayBuffer();
+            bspatch.FS.writeFile('/oldFile', new Uint8Array(buffer));
+            bspatch.FS.writeFile('/patchFile', new Uint8Array(patchArrayBuffer));
+            bspatch.callMain(['/oldFile', '/newFile', '/patchFile']);
+            const newFileData = bspatch.FS.readFile('/newFile');
+            buffer = await newFileData.arrayBuffer();
+        }
+    }
+
+    const dataView = new DataView(buffer);
     const view = new Uint8Array(buffer);
+    
 
     // Update image data
     imageInfos.forEach((img, i) => {
