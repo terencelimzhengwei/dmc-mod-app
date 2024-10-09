@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { pattern, valueToPattern } from '../config/pattern';
 
-const StageCard = ({ stage, stageIndex, numChars, updateStage}) => {
+const StageCard = ({ stage, stageIndex, numChars, updateStage }) => {
     const [editStage, setEditStage] = useState(false);
     const [stageData, setStageData] = useState(stage);
 
@@ -133,10 +133,15 @@ const StageCard = ({ stage, stageIndex, numChars, updateStage}) => {
                                                               </option>
                                                           )
                                                       )
-                                                    : Array.from(
-                                                          { length: numChars },
-                                                          (_, i) => i
-                                                      ).map(index => (
+                                                    : [
+                                                          ...Array.from(
+                                                              {
+                                                                  length: numChars,
+                                                              },
+                                                              (_, i) => i
+                                                          ),
+                                                          65535,
+                                                      ].map(index => (
                                                           <option
                                                               value={index}
                                                               align={'center'}

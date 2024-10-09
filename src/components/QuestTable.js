@@ -9,8 +9,6 @@ const generateQuests = (questMode, charInfos, imageDatas, isPenc = false) =>
             const isValidCharacterID = isPenc
                 ? CharacterID !== 0
                 : CharacterID !== 65535;
-            console.log(CharacterID)
-            console.log(charInfos)
             return {
                 Sprite: isValidCharacterID
                     ? imageDatas[charInfos[CharacterID].SpriteID].url

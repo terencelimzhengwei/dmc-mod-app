@@ -107,7 +107,8 @@ const getImages = (arrayBuffer, spriteMetadata, imageInfos) => {
 async function rebuild(data) {
     const buffer = data.buffer.slice(0);
     const dataView = new DataView(buffer);
-    const { spriteMetadata, imageInfos, charInfos, questMode, imageDatas } = data;
+    const { spriteMetadata, imageInfos, charInfos, questMode, imageDatas } =
+        data;
     const view = new Uint8Array(buffer);
 
     // Update image data
@@ -136,15 +137,19 @@ async function rebuild(data) {
     const questOffset = Number(spriteMetadata.QuestModeLocation);
     questMode.forEach((stage, stageIndex) => {
         stage.forEach((char, charIndex) => {
-            Object.entries(char).forEach(([attribute, value], attributeIndex) => {
-                dataView.setUint16(
-                    questOffset +
-                        (stageIndex * stage.length + charIndex) * Object.keys(char).length * 2 +
-                        attributeIndex * 2,
-                    value,
-                    true
-                );
-            });
+            Object.entries(char).forEach(
+                ([attribute, value], attributeIndex) => {
+                    dataView.setUint16(
+                        questOffset +
+                            (stageIndex * stage.length + charIndex) *
+                                Object.keys(char).length *
+                                2 +
+                            attributeIndex * 2,
+                        value,
+                        true
+                    );
+                }
+            );
         });
     });
 
