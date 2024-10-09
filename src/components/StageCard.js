@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { pattern, valueToPattern } from '../config/pattern';
 
-const StageCard = ({ stage, stageIndex, numChars, updateStage, isPenc }) => {
+const StageCard = ({ stage, stageIndex, numChars, updateStage }) => {
     const [editStage, setEditStage] = useState(false);
     const [stageData, setStageData] = useState(stage);
 
@@ -60,15 +60,7 @@ const StageCard = ({ stage, stageIndex, numChars, updateStage, isPenc }) => {
                         <Box>
                             <Center>
                                 <Image
-                                    src={
-                                        isPenc
-                                            ? character.attributes[
-                                                  'CharacterID'
-                                              ] !== 0
-                                                ? character.Sprite
-                                                : null
-                                            : character.CharacterID
-                                    }
+                                    src={`${character.Sprite}`}
                                     fallbackSrc="https://via.placeholder.com/48"
                                     alt="Character"
                                     boxSize="35px"

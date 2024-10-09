@@ -3,7 +3,7 @@ import { arrayBufferToImageData } from './imageUtils';
 import metadata from '../config/metadata.json';
 import firmwareChecker from './firmwareChecker';
 
-const getQuestInfos = (arrayBuffer, spriteMetadata) => {
+const getQuestInfos = (arrayBuffer, spriteMetadata, isPenc = false) => {
     const { QuestModeLocation, QuestMode } = spriteMetadata;
     const { levels, enemies, attributes } = QuestMode;
     const data = new DataView(arrayBuffer.slice(0));
@@ -16,6 +16,7 @@ const getQuestInfos = (arrayBuffer, spriteMetadata) => {
             attributes.forEach((a, index) => {
                 const offsetValue =
                     offset +
+                    (isPenc ? i * 16 : 0) +
                     i * enemies * attributes.length * 2 +
                     j * attributes.length * 2 +
                     index * 2;
@@ -104,7 +105,7 @@ const getImages = (arrayBuffer, spriteMetadata, imageInfos) => {
 //     downloadFile(URL.createObjectURL(content), 'images.zip')
 // };
 
-async function rebuild(data) {
+async function rebuild(data, isPenc = false) {
     const buffer = data.buffer.slice(0);
     const dataView = new DataView(buffer);
     const spriteMetadata = data.spriteMetadata;
@@ -140,17 +141,30 @@ async function rebuild(data) {
         stage.forEach((char, charIndex) => {
             const attributes = Object.keys(char);
             attributes.forEach((attribute, attributeIndex) => {
+                console.log(stageIndex, charIndex, attributeIndex);
+                console.log(
+                    stageIndex * stage.length * attributes.length * 2 +
+                        charIndex * attributes.length * 2 +
+                        attributeIndex * 2 +
+                        (isPenc ? stageIndex * 16 : 0)
+                );
+                console.log(
+                    `0x${(questOffset + stageIndex * stage.length * attributes.length * 2 + charIndex * attributes.length * 2 + attributeIndex * 2 + (isPenc ? stageIndex * 16 : 0)).toString(16)}`
+                );
+                console.log(char[attribute]);
                 dataView.setUint16(
                     questOffset +
                         stageIndex * stage.length * attributes.length * 2 +
                         charIndex * attributes.length * 2 +
                         attributeIndex * 2 +
-                        char[attribute],
+                        (isPenc ? stageIndex * 16 : 0),
+                    char[attribute],
                     true
                 );
             });
         });
     });
+
     return buffer;
 }
 
