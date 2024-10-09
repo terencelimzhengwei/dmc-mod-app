@@ -21,14 +21,9 @@ const generateQuests = (questMode, charInfos, imageDatas, isPenc = false) =>
     );
 
 const QuestTable = ({ data, updateQuests }) => {
-<<<<<<< Updated upstream
-    const { questMode, charInfos, imageDatas } = data;
-    const quests = generateQuests(questMode, charInfos, imageDatas);
-=======
     const { questMode, charInfos, imageDatas, firmware } = data;
     const isPenc = firmware.id.includes('penc');
     const quests = generateQuests(questMode, charInfos, imageDatas, isPenc);
->>>>>>> Stashed changes
 
     // Handle saving updates from StageCard
     const updateStage = (stageIndex, updatedValues) => {
