@@ -1,5 +1,5 @@
 import { useDropzone } from 'react-dropzone';
-import { Box, Text, VStack } from '@chakra-ui/react';
+import { Box, Text, VStack, Center } from '@chakra-ui/react';
 
 export default function FileUpload(props) {
     const { handleUpload } = props;
@@ -24,24 +24,30 @@ export default function FileUpload(props) {
     });
 
     return (
-        <VStack spacing={4} justify="center" align="center" h="100vh">
+        <VStack spacing={4} justify="center" align="center" h="100vh" p={2}>
             <Box
                 {...getRootProps()}
                 borderWidth="2px"
                 borderRadius="lg"
                 borderStyle="dashed"
                 borderColor="gray.500"
-                p={20}
-                width={'60%'}
+                height={["30%"]}
+                width={["100%","60%"]}
+                p={2}
                 textAlign="center"
                 cursor="pointer"
                 _hover={{ borderColor: 'gray.300' }}
                 transition="border-color 0.2s"
+                display="flex" // Add flexbox to center contents
+                alignItems="center" // Align text vertically in the center
+                justifyContent="center" // Align text horizontally in the center
             >
                 <input {...getInputProps()} />
-                <Text fontSize={'xl'} fontWeight={'200'}>
+                <Center>
+                <Text fontSize={['l','xl','xl','2xl']} fontWeight={'200'}>
                     Drag & drop your bin file here or click to upload
                 </Text>
+                </Center>
             </Box>
         </VStack>
     );

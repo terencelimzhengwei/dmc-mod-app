@@ -119,7 +119,7 @@ const UpdateSprite = props => {
     }, [data]);
 
     return (
-        <Flex flexDir={'column'} align={'center'} gap={4}>
+        <Flex flexDir={'column'} align={'center'} gap={4} p={2}>
             <Box
                 {...getRootProps()}
                 borderWidth="2px"
@@ -134,17 +134,17 @@ const UpdateSprite = props => {
                 transition="border-color 0.2s"
             >
                 <input {...getInputProps()} />
-                <Heading>Update Images</Heading>
-                <Text fontWeight={200}>
+                <Heading size={['l','xl']}>Update Images</Heading>
+                <Text fontWeight={200} fontSize={['md','l','xl']}>
                     To update images in your firmware, drag and drop or click to
                     upload your sprites.
                 </Text>
-                <Text fontWeight={200}>
+                <Text fontWeight={200} fontSize={['md','l','xl']}>
                     Filenames should correspond to the ID of the sprite (e.g.
                     1.png, 2.png etc.)
                 </Text>
             </Box>
-            <Wrap>{memoizedImageList}</Wrap>
+            <Wrap justify={"center"} align={"center"} display={"flex"}>{memoizedImageList}</Wrap>
         </Flex>
     );
 };

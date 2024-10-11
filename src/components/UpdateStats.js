@@ -18,8 +18,8 @@ const UpdateStats = ({ data, updateData }) => {
                 p={5}
                 mb={'8px'}
             >
-                <Heading>Update Character Stats</Heading>
-                <Text fontWeight={200}>
+                <Heading size={['l','xl']}>Update Character Stats</Heading>
+                <Text fontWeight={200} fontSize={['md','l','xl']}>
                     To update stats of your characters, click the edit button,
                     change the stats accordingly and save.
                 </Text>

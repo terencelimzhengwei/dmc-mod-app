@@ -3,7 +3,7 @@ import QuestTable from './QuestTable';
 
 const UpdateQuest = ({ data, updateQuests }) => {
     return (
-        <Flex flexDir={'column'} align={'center'} gap={4}>
+        <Flex flexDir={'column'} align={'center'} gap={4} p={2}>
             <Box
                 borderWidth="2px"
                 borderRadius="lg"
@@ -13,8 +13,8 @@ const UpdateQuest = ({ data, updateQuests }) => {
                 textAlign="center"
                 p={5}
             >
-                <Heading>Update Quest Mode</Heading>
-                <Text fontWeight={200}>
+                <Heading size={['l','xl']}>Update Quest Mode</Heading>
+                <Text fontWeight={200} fontSize={['md','l','xl']}>
                     To update quest mode, click the edit stage button, change
                     the information accordingly and save.
                 </Text>
