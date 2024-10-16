@@ -112,9 +112,9 @@ async function rebuild(data, patchFiles) {
     if (patchFiles) {
         patchFiles.forEach(file => {
             file.diff.forEach(diff => {
-                const { start, data, patched_data } = diff;
+                const { start, original_data, patched_data } = diff;
 
-                const dataToUse = file.enabled ? patched_data : data;
+                const dataToUse = file.enabled ? patched_data : original_data;
 
                 // Convert the hex data string to a Uint8Array
                 const byteArray = hexStringToUint8Array(dataToUse);

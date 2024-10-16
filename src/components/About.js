@@ -105,10 +105,7 @@ const About = () => {
                 </Text>
                 <Text fontWeight={200}>
                     4.
-                    <Link
-                        href="https://discord.gg/digimon"
-                        isExternal
-                    >
+                    <Link href="https://discord.gg/digimon" isExternal>
                         Digitama Hatchery Discord <ExternalLinkIcon mx="2px" />
                     </Link>
                 </Text>
@@ -133,7 +130,8 @@ const About = () => {
             >
                 <Heading>Credits</Heading>
                 <Text fontWeight={200}>
-                    1. Cyanic for the code that was referenced for this app. Donate to him{' '}
+                    1. Cyanic for the code that was referenced for this app.
+                    Donate to him{' '}
                     <Link
                         color={'teal.100'}
                         fontWeight={600}

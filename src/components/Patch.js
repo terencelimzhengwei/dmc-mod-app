@@ -6,7 +6,7 @@ import {
     Button,
     Wrap,
     WrapItem,
-    Link
+    Link,
 } from '@chakra-ui/react';
 
 const PatchCard = ({ index, patch, toggleEnabled }) => {
@@ -26,12 +26,12 @@ const PatchCard = ({ index, patch, toggleEnabled }) => {
             <Text fontWeight="bold" fontSize="xs" textAlign="center">
                 Developed by {creator}
             </Text>
-            <Text color={"teal.100"}  fontSize="xs" textAlign="center" mb={4}>
+            <Text color={'teal.100'} fontSize="xs" textAlign="center" mb={4}>
                 <Link href={webpage} isExternal>
                     Ko-fi Page
                 </Link>
             </Text>
-            
+
             <Text fontSize="sm" textAlign="center" mb={4}>
                 {description}
             </Text>

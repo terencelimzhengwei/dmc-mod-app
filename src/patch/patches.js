@@ -7,8 +7,8 @@ const CLOCKFIXNAME = '12H Clock Fix';
 const CLOCKFIXDESC =
     'Apply this mod so that 12PM and 12AM do not show up as 0PM and 0AM';
 
-const KUROZATOU = "Kurozatou"
-const KUROZATOU_KOFI = "https://ko-fi.com/kurozatou"
+const KUROZATOU = 'Kurozatou';
+const KUROZATOU_KOFI = 'https://ko-fi.com/kurozatou';
 
 const PATCHES = {
     dmc1: [
