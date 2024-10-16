@@ -11,6 +11,7 @@ const About = () => {
                 borderColor="gray.500"
                 textAlign="left"
                 p={5}
+                colSpan={2}
             >
                 <Heading>Instructions</Heading>
                 <Text fontWeight={200}>
@@ -38,7 +39,7 @@ const About = () => {
                     made
                 </Text>
             </GridItem>
-            <GridItem
+            {/* <GridItem
                 borderWidth="2px"
                 borderRadius="lg"
                 borderStyle="dashed"
@@ -64,7 +65,7 @@ const About = () => {
                     5. Support for custom offsets / image sizes
                 </Text>
                 <Text fontWeight={200}>6. Add support for PenC wave 2</Text>
-            </GridItem>
+            </GridItem> */}
             <GridItem
                 borderWidth="2px"
                 borderRadius="lg"
@@ -96,7 +97,6 @@ const About = () => {
                 <Text fontWeight={200}>
                     3.
                     <Link
-                        fontWeight={200}
                         href="https://github.com/GMMan/DigimonColorSpriteTool"
                         isExternal
                     >
@@ -106,7 +106,6 @@ const About = () => {
                 <Text fontWeight={200}>
                     4.
                     <Link
-                        fontWeight={200}
                         href="https://discord.gg/digimon"
                         isExternal
                     >
@@ -116,7 +115,6 @@ const About = () => {
                 <Text fontWeight={200}>
                     5.
                     <Link
-                        fontWeight={200}
                         href=" https://github.com/terencelimzhengwei/dmc-mod-app"
                         isExternal
                     >
@@ -135,10 +133,32 @@ const About = () => {
             >
                 <Heading>Credits</Heading>
                 <Text fontWeight={200}>
-                    1. Cyanic for the code that was referenced for this app
+                    1. Cyanic for the code that was referenced for this app. Donate to him{' '}
+                    <Link
+                        color={'teal.100'}
+                        fontWeight={600}
+                        href="https://ko-fi.com/caralynx"
+                        isExternal
+                    >
+                        {' '}
+                        here
+                    </Link>
                 </Text>
                 <Text fontWeight={200}>
                     2. Humulos for providing a platform for vpet discussion
+                </Text>
+                <Text fontWeight={200}>
+                    3. Kurozatou from Digitama Hatchery Discord for providing
+                    the patches. Donate to him{' '}
+                    <Link
+                        color={'teal.100'}
+                        fontWeight={600}
+                        href="https://ko-fi.com/kurozatou"
+                        isExternal
+                    >
+                        {' '}
+                        here
+                    </Link>
                 </Text>
             </GridItem>
         </Grid>
