@@ -3,7 +3,7 @@ import { Flex, Spacer, Button, ButtonGroup } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 
 const Nav = props => {
-    const { pageActive, fileUploaded, isPatchable, navClick, restartClick, buildClick } =
+    const { pageActive, fileUploaded, navClick, restartClick, buildClick } =
         props;
     return (
         <Flex p={2}>
@@ -44,7 +44,7 @@ const Nav = props => {
                         Update Quest Mode
                     </Button>
                 ) : null}
-                {fileUploaded & isPatchable ? (
+                {fileUploaded ? (
                     <Button
                         variant="ghost"
                         isActive={pageActive === 4}

@@ -1,9 +1,7 @@
 import { arrayBufferToImageData } from './imageUtils';
-// import JSZip from 'jszip';
 import metadata from '../config/metadata.json';
 import firmwareChecker from './firmwareChecker';
-import { loadBspatch } from 'bsdiff-wasm';
-
+import PATCHES from '../patch/patches';
 
 const getQuestInfos = (arrayBuffer, spriteMetadata) => {
     const { QuestModeLocation, QuestMode } = spriteMetadata;
@@ -107,25 +105,29 @@ const getImages = (arrayBuffer, spriteMetadata, imageInfos) => {
 // };
 
 async function rebuild(data, patchFiles) {
-    let buffer = data.buffer.slice(0);
-    const { spriteMetadata, imageInfos, charInfos, questMode, imageDatas } = data;
+    const buffer = data.buffer.slice(0);
+    const dataView = new DataView(buffer);
+    const { spriteMetadata, imageInfos, charInfos, questMode, imageDatas } =
+        data;
+    if (patchFiles) {
+        patchFiles.forEach(file => {
+            file.diff.forEach(diff => {
+                const { start, data, patched_data } = diff;
 
-    if(patchFiles) {
-        const bspatch = await loadBspatch();
-        for (const patchFile of patchFiles) {
-            const response = await fetch(patchFile);
-            const patchArrayBuffer = await response.arrayBuffer();
-            bspatch.FS.writeFile('/oldFile', new Uint8Array(buffer));
-            bspatch.FS.writeFile('/patchFile', new Uint8Array(patchArrayBuffer));
-            bspatch.callMain(['/oldFile', '/newFile', '/patchFile']);
-            const newFileData = bspatch.FS.readFile('/newFile');
-            buffer = await newFileData.arrayBuffer();
-        }
+                const dataToUse = file.enabled ? patched_data : data;
+
+                // Convert the hex data string to a Uint8Array
+                const byteArray = hexStringToUint8Array(dataToUse);
+
+                // Write each byte into the buffer using the DataView
+                byteArray.forEach((byte, i) => {
+                    dataView.setUint8(Number(start) + i, byte, true);
+                });
+            });
+        });
     }
 
-    const dataView = new DataView(buffer);
     const view = new Uint8Array(buffer);
-    
 
     // Update image data
     imageInfos.forEach((img, i) => {
@@ -153,15 +155,19 @@ async function rebuild(data, patchFiles) {
     const questOffset = Number(spriteMetadata.QuestModeLocation);
     questMode.forEach((stage, stageIndex) => {
         stage.forEach((char, charIndex) => {
-            Object.entries(char).forEach(([attribute, value], attributeIndex) => {
-                dataView.setUint16(
-                    questOffset +
-                        (stageIndex * stage.length + charIndex) * Object.keys(char).length * 2 +
-                        attributeIndex * 2,
-                    value,
-                    true
-                );
-            });
+            Object.entries(char).forEach(
+                ([attribute, value], attributeIndex) => {
+                    dataView.setUint16(
+                        questOffset +
+                            (stageIndex * stage.length + charIndex) *
+                                Object.keys(char).length *
+                                2 +
+                            attributeIndex * 2,
+                        value,
+                        true
+                    );
+                }
+            );
         });
     });
 
@@ -210,4 +216,39 @@ const init = async arrayBuffer => {
     };
 };
 
-export { init, downloadBIN, rebuild };
+// Helper function to convert hex string to Uint8Array
+const hexStringToUint8Array = hex => {
+    const length = hex.length / 2;
+    const byteArray = new Uint8Array(length);
+
+    for (let i = 0; i < length; i++) {
+        byteArray[i] = parseInt(hex.substr(i * 2, 2), 16);
+    }
+
+    return byteArray;
+};
+
+const getPatches = originalData => {
+    const { firmware, buffer } = originalData;
+    const view = new Uint8Array(buffer.slice(0));
+    const patchFiles = firmware.id in PATCHES ? PATCHES[firmware.id] : [];
+    const statusPatchFiles = patchFiles.map(file => {
+        const { diff } = file;
+        let enabled = false;
+        diff.forEach(d => {
+            const { start, end, data, patched_data } = d;
+            const slicedView = view.slice(Number(start), Number(end) + 1);
+            const hexString = Array.from(slicedView)
+                .map(byte => byte.toString(16).padStart(2, '0'))
+                .join('');
+            if (hexString === data) {
+                enabled = false;
+            } else if (hexString === patched_data) {
+                enabled = true;
+            }
+        });
+        return { ...file, enabled };
+    });
+    return statusPatchFiles;
+};
+export { init, downloadBIN, rebuild, getPatches };

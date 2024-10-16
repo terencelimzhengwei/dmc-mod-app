@@ -1,39 +1,24 @@
-import dmc1_clockfix from './dmc1_clockfix.bsdiff';
-import dmc2_clockfix from './dmc2_clockfix.bsdiff';
-import dmc3_clockfix from './dmc3_clockfix.bsdiff';
-import dmc4_clockfix from './dmc4_clockfix.bsdiff';
-import dmc5_clockfix from './dmc5_clockfix.bsdiff';
-import penc1_clockfix from './penc1_clockfix.bsdiff';
-import penc2_clockfix from './penc2_clockfix.bsdiff';
-import penc3_clockfix from './penc3_clockfix.bsdiff';
-import dmc1_scrollfix from './dmc1_scrollfix.bsdiff';
-import dmc2_scrollfix from './dmc2_scrollfix.bsdiff';
-import dmc3_scrollfix from './dmc3_scrollfix.bsdiff';
-import dmc4_scrollfix from './dmc4_scrollfix.bsdiff';
-import dmc5_scrollfix from './dmc5_scrollfix.bsdiff';
-import penc1_scrollfix from './penc1_scrollfix.bsdiff';
-import penc2_scrollfix from './penc2_scrollfix.bsdiff';
-import penc3_scrollfix from './penc3_scrollfix.bsdiff';
+import diffs from './diffs';
 
 const SCROLLFIXNAME = 'Clock Scroll Fix';
 const SCROLLFIXDESC =
     'Apply this mod to remove the scroll animation when selecting the clock';
-const CLOCKFIXNAME = '12H Clock Fix'
-const CLOCKFIXDESC = 'Apply this mod so that 12PM and 12AM do not show up as 0PM and 0AM'
+const CLOCKFIXNAME = '12H Clock Fix';
+const CLOCKFIXDESC =
+    'Apply this mod so that 12PM and 12AM do not show up as 0PM and 0AM';
 
-const patches = {
+const PATCHES = {
     dmc1: [
         {
             name: SCROLLFIXNAME,
             description: SCROLLFIXDESC,
-            file: dmc1_scrollfix,
+            diff: diffs.dmc1.scrollfix,
             enabled: false,
         },
         {
             name: CLOCKFIXNAME,
-            description:
-            CLOCKFIXDESC,
-            file: dmc1_clockfix,
+            description: CLOCKFIXDESC,
+            diff: diffs.dmc1.clockfix,
             enabled: false,
         },
     ],
@@ -41,14 +26,13 @@ const patches = {
         {
             name: SCROLLFIXNAME,
             description: SCROLLFIXDESC,
-            file: dmc2_scrollfix,
+            diff: diffs.dmc2.scrollfix,
             enabled: false,
         },
         {
             name: CLOCKFIXNAME,
-            description:
-            CLOCKFIXDESC,
-            file: dmc2_clockfix,
+            description: CLOCKFIXDESC,
+            diff: diffs.dmc2.clockfix,
             enabled: false,
         },
     ],
@@ -56,14 +40,13 @@ const patches = {
         {
             name: SCROLLFIXNAME,
             description: SCROLLFIXDESC,
-            file: dmc3_scrollfix,
+            diff: diffs.dmc3.scrollfix,
             enabled: false,
         },
         {
             name: CLOCKFIXNAME,
-            description:
-            CLOCKFIXDESC,
-            file: dmc3_clockfix,
+            description: CLOCKFIXDESC,
+            diff: diffs.dmc2.clockfix,
             enabled: false,
         },
     ],
@@ -71,14 +54,13 @@ const patches = {
         {
             name: SCROLLFIXNAME,
             description: SCROLLFIXDESC,
-            file: dmc4_scrollfix,
+            diff: diffs.dmc4.scrollfix,
             enabled: false,
         },
         {
             name: CLOCKFIXNAME,
-            description:
-            CLOCKFIXDESC,
-            file: dmc4_clockfix,
+            description: CLOCKFIXDESC,
+            diff: diffs.dmc4.clockfix,
             enabled: false,
         },
     ],
@@ -86,14 +68,13 @@ const patches = {
         {
             name: SCROLLFIXNAME,
             description: SCROLLFIXDESC,
-            file: dmc5_scrollfix,
+            diff: diffs.dmc5.scrollfix,
             enabled: false,
         },
         {
             name: CLOCKFIXNAME,
-            description:
-            CLOCKFIXDESC,
-            file: dmc5_clockfix,
+            description: CLOCKFIXDESC,
+            diff: diffs.dmc5.clockfix,
             enabled: false,
         },
     ],
@@ -101,14 +82,13 @@ const patches = {
         {
             name: SCROLLFIXNAME,
             description: SCROLLFIXDESC,
-            file: penc1_scrollfix,
+            diff: diffs.penc1.scrollfix,
             enabled: false,
         },
         {
             name: CLOCKFIXNAME,
-            description:
-            CLOCKFIXDESC,
-            file: penc1_clockfix,
+            description: CLOCKFIXDESC,
+            diff: diffs.penc1.clockfix,
             enabled: false,
         },
     ],
@@ -116,14 +96,13 @@ const patches = {
         {
             name: SCROLLFIXNAME,
             description: SCROLLFIXDESC,
-            file: penc2_scrollfix,
+            diff: diffs.penc2.scrollfix,
             enabled: false,
         },
         {
             name: CLOCKFIXNAME,
-            description:
-            CLOCKFIXDESC,
-            file: penc2_clockfix,
+            description: CLOCKFIXDESC,
+            diff: diffs.penc2.clockfix,
             enabled: false,
         },
     ],
@@ -131,17 +110,58 @@ const patches = {
         {
             name: SCROLLFIXNAME,
             description: SCROLLFIXDESC,
-            file: penc3_scrollfix,
+            diff: diffs.penc3.scrollfix,
             enabled: false,
         },
         {
             name: CLOCKFIXNAME,
-            description:
-            CLOCKFIXDESC,
-            file: penc3_clockfix,
+            description: CLOCKFIXDESC,
+            diff: diffs.penc3.clockfix,
+            enabled: false,
+        },
+    ],
+    penc4: [
+        {
+            name: SCROLLFIXNAME,
+            description: SCROLLFIXDESC,
+            diff: diffs.penc4.scrollfix,
+            enabled: false,
+        },
+        {
+            name: CLOCKFIXNAME,
+            description: CLOCKFIXDESC,
+            diff: diffs.penc4.clockfix,
+            enabled: false,
+        },
+    ],
+    penc5: [
+        {
+            name: SCROLLFIXNAME,
+            description: SCROLLFIXDESC,
+            diff: diffs.penc5.scrollfix,
+            enabled: false,
+        },
+        {
+            name: CLOCKFIXNAME,
+            description: CLOCKFIXDESC,
+            diff: diffs.penc5.clockfix,
+            enabled: false,
+        },
+    ],
+    penc0: [
+        {
+            name: SCROLLFIXNAME,
+            description: SCROLLFIXDESC,
+            diff: diffs.penc0.scrollfix,
+            enabled: false,
+        },
+        {
+            name: CLOCKFIXNAME,
+            description: CLOCKFIXDESC,
+            diff: diffs.penc0.clockfix,
             enabled: false,
         },
     ],
 };
 
-export default patches;
+export default PATCHES;

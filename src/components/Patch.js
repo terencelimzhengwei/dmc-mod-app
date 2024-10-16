@@ -1,7 +1,15 @@
-import { Flex, Box, Text, Heading, Button, Wrap, WrapItem } from '@chakra-ui/react';
+import {
+    Flex,
+    Box,
+    Text,
+    Heading,
+    Button,
+    Wrap,
+    WrapItem,
+} from '@chakra-ui/react';
 
-const PatchCard = ({index, patch, toggleEnabled}) => {
-    const {name, description, enabled} = patch
+const PatchCard = ({ index, patch, toggleEnabled }) => {
+    const { name, description, enabled } = patch;
     return (
         <Box
             p={5}
@@ -17,21 +25,26 @@ const PatchCard = ({index, patch, toggleEnabled}) => {
             <Text fontSize="sm" textAlign="center" mb={4}>
                 {description}
             </Text>
-            <Button mt={4} size="md" width="100%" onClick={()=>toggleEnabled(index)} colorScheme={enabled ? 'green':'gray'}>
-                {enabled ? "Enabled" : "Disabled"}
+            <Button
+                mt={4}
+                size="md"
+                width="100%"
+                onClick={() => toggleEnabled(index)}
+                colorScheme={enabled ? 'green' : 'gray'}
+            >
+                {enabled ? 'Enabled' : 'Disabled'}
             </Button>
         </Box>
-    )
-}
+    );
+};
 
 const Patch = ({ patches, updatePatches }) => {
-    console.log(patches)
-    const toggleEnabled = (index) => {
-        const newPatches = patches.map((patch,i)=>(
-            (index===i ? {...patch, enabled:!patch.enabled} : patch)
-        ))
-        updatePatches(newPatches)
-    }
+    const toggleEnabled = index => {
+        const newPatches = patches.map((patch, i) =>
+            index === i ? { ...patch, enabled: !patch.enabled } : patch
+        );
+        updatePatches(newPatches);
+    };
     return (
         <Flex flexDir={'column'} align={'center'} gap={4}>
             <Box
@@ -45,15 +58,22 @@ const Patch = ({ patches, updatePatches }) => {
             >
                 <Heading>Patch your firmware</Heading>
                 <Text fontWeight={200}>
-                    {patches ? "Select one or more patches to apply to your file" : "No available patches as patch only available on original firmware"}
+                    {patches
+                        ? 'Select one or more patches to apply to your file'
+                        : 'No available patches as patch only available on original firmware'}
                 </Text>
             </Box>
             <Wrap>
-            {patches.map((patch,index)=>(
-                <WrapItem>
-                    <PatchCard key={`${index}-patchcard`} index={index} patch={patch} toggleEnabled={toggleEnabled}/>
-                </WrapItem>
-            ))}
+                {patches.map((patch, index) => (
+                    <WrapItem>
+                        <PatchCard
+                            key={`${index}-patchcard`}
+                            index={index}
+                            patch={patch}
+                            toggleEnabled={toggleEnabled}
+                        />
+                    </WrapItem>
+                ))}
             </Wrap>
         </Flex>
     );
