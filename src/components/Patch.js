@@ -6,10 +6,11 @@ import {
     Button,
     Wrap,
     WrapItem,
+    Link
 } from '@chakra-ui/react';
 
 const PatchCard = ({ index, patch, toggleEnabled }) => {
-    const { name, description, enabled } = patch;
+    const { name, description, enabled, creator, webpage } = patch;
     return (
         <Box
             p={5}
@@ -19,9 +20,18 @@ const PatchCard = ({ index, patch, toggleEnabled }) => {
             borderRadius="lg"
             gap={10}
         >
-            <Text fontWeight="bold" fontSize="2xl" textAlign="center" mb={4}>
+            <Text fontWeight="bold" fontSize="2xl" textAlign="center">
                 {name}
             </Text>
+            <Text fontWeight="bold" fontSize="xs" textAlign="center">
+                Developed by {creator}
+            </Text>
+            <Text color={"teal.100"}  fontSize="xs" textAlign="center" mb={4}>
+                <Link href={webpage} isExternal>
+                    Ko-fi Page
+                </Link>
+            </Text>
+            
             <Text fontSize="sm" textAlign="center" mb={4}>
                 {description}
             </Text>
