@@ -1,8 +1,6 @@
 import {
     Text,
     Heading,
-    Grid,
-    GridItem,
     Link,
     Wrap,
     WrapItem,
