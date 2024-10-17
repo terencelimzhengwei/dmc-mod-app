@@ -33,8 +33,9 @@ const EditableCell = memo(
 const ImageCell = memo(({ rowIndex, src }) => (
     <Box display="flex" justifyContent="center" alignItems="center">
         <Image
+            borderRadius={'10%'}
             key={`${rowIndex}-SpriteImage`}
-            fallbackSrc="https://via.placeholder.com/48"
+            fallbackSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAAAAAByaaZbAAAA6ElEQVRIx+3UwQ6CMAzGcd7/YajRdIZ1HjQW9liODXCo1PZgTIzfgdP/B8sONEhE3pN22FBkco446kYNMUKaYzUgyAta4F0BbvgUoGA8EnH+hOvVIHJwLvT6a03PYYjRBAz7gy+BgY0gHM4mEHawPxtA6gH2FzXI/UrI4FT6Wohg6Sshgaq/CwGseoDD5Q146GexCZ76SWyBF30RNWC6in0WFeiPgCz2o7iD1MMkNvv0v/MzyH0RQg84g6lPr7hK/QKWPh1T6mdQ9W9WgL4vwNBnYOkz6MAGPP4CaPV9O4IODet8g940vAF536t7Ag/0WAAAAABJRU5ErkJggg=="
             src={src}
             alt="Sprite"
             boxSize="30px"
@@ -64,19 +65,24 @@ const EditableRow = ({
 
     return (
         <Tr key={`row-${rowIndex}`}>
-            <Td textAlign="center" verticalAlign="middle">
+            <Td minWidth={20} textAlign="center" verticalAlign="middle">
                 <ImageCell rowIndex={rowIndex} src={row.SpriteImage} />
             </Td>
-            <Td textAlign="center" verticalAlign="middle">
+            <Td minWidth={20} textAlign="center" verticalAlign="middle">
                 <ImageCell rowIndex={rowIndex} src={row.AttackImage} />
             </Td>
-            <Td textAlign="center" verticalAlign="middle">
+            <Td minWidth={20} textAlign="center" verticalAlign="middle">
                 {row.AltAttackImage ? (
                     <ImageCell rowIndex={rowIndex} src={row.AltAttackImage} />
                 ) : null}
             </Td>
             {Object.keys(row.attributes).map(key => (
-                <Td key={`td-${key}`} textAlign="center" verticalAlign="middle">
+                <Td
+                    minWidth={20}
+                    key={`td-${key}`}
+                    textAlign="center"
+                    verticalAlign="middle"
+                >
                     <EditableCell
                         index={key}
                         inputValue={localRowData[key]}
