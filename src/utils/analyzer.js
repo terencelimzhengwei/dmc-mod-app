@@ -1,7 +1,7 @@
 import { arrayBufferToImageData } from './imageUtils';
-// import JSZip from 'jszip';
 import metadata from '../config/metadata.json';
 import firmwareChecker from './firmwareChecker';
+import PATCHES from '../patch/patches';
 
 const getQuestInfos = (arrayBuffer, spriteMetadata) => {
     const { QuestModeLocation, QuestMode } = spriteMetadata;
@@ -104,11 +104,29 @@ const getImages = (arrayBuffer, spriteMetadata, imageInfos) => {
 //     downloadFile(URL.createObjectURL(content), 'images.zip')
 // };
 
-async function rebuild(data) {
+async function rebuild(data, patchFiles) {
     const buffer = data.buffer.slice(0);
     const dataView = new DataView(buffer);
     const { spriteMetadata, imageInfos, charInfos, questMode, imageDatas } =
         data;
+    if (patchFiles) {
+        patchFiles.forEach(file => {
+            file.diff.forEach(diff => {
+                const { start, original_data, patched_data } = diff;
+
+                const dataToUse = file.enabled ? patched_data : original_data;
+
+                // Convert the hex data string to a Uint8Array
+                const byteArray = hexStringToUint8Array(dataToUse);
+
+                // Write each byte into the buffer using the DataView
+                byteArray.forEach((byte, i) => {
+                    dataView.setUint8(Number(start) + i, byte, true);
+                });
+            });
+        });
+    }
+
     const view = new Uint8Array(buffer);
 
     // Update image data
@@ -198,4 +216,39 @@ const init = async arrayBuffer => {
     };
 };
 
-export { init, downloadBIN, rebuild };
+// Helper function to convert hex string to Uint8Array
+const hexStringToUint8Array = hex => {
+    const length = hex.length / 2;
+    const byteArray = new Uint8Array(length);
+
+    for (let i = 0; i < length; i++) {
+        byteArray[i] = parseInt(hex.substr(i * 2, 2), 16);
+    }
+
+    return byteArray;
+};
+
+const getPatches = originalData => {
+    const { firmware, buffer } = originalData;
+    const view = new Uint8Array(buffer.slice(0));
+    const patchFiles = firmware.id in PATCHES ? PATCHES[firmware.id] : [];
+    const statusPatchFiles = patchFiles.map(file => {
+        const { diff } = file;
+        let enabled = false;
+        diff.forEach(d => {
+            const { start, end, data, patched_data } = d;
+            const slicedView = view.slice(Number(start), Number(end) + 1);
+            const hexString = Array.from(slicedView)
+                .map(byte => byte.toString(16).padStart(2, '0'))
+                .join('');
+            if (hexString === data) {
+                enabled = false;
+            } else if (hexString === patched_data) {
+                enabled = true;
+            }
+        });
+        return { ...file, enabled };
+    });
+    return statusPatchFiles;
+};
+export { init, downloadBIN, rebuild, getPatches };

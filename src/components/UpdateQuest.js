@@ -13,8 +13,8 @@ const UpdateQuest = ({ data, updateQuests }) => {
                 textAlign="center"
                 p={5}
             >
-                <Heading size={['l','xl']}>Update Quest Mode</Heading>
-                <Text fontWeight={200} fontSize={['md','l','xl']}>
+                <Heading size={['lg', 'xl']}>Update Quest Mode</Heading>
+                <Text fontWeight={200} fontSize={['sm', 'lg', 'xl']}>
                     To update quest mode, click the edit stage button, change
                     the information accordingly and save.
                 </Text>

@@ -9,10 +9,11 @@ import {
 import Nav from './components/Nav';
 import UploadBIN from './components/UploadBIN';
 import UpdateSprite from './components/UpdateSprite';
-import { init, rebuild, downloadBIN } from './utils/analyzer';
+import { init, rebuild, downloadBIN, getPatches } from './utils/analyzer';
 import UpdateStats from './components/UpdateStats';
 import UpdateQuest from './components/UpdateQuest';
 import About from './components/About';
+import Patch from './components/Patch';
 
 // Create a theme with default mode set to dark
 const theme = extendTheme({
@@ -26,7 +27,7 @@ function App() {
     const [page, setPage] = useState(0);
     const [originalData, setOriginalData] = useState(null);
     const [data, setData] = useState(null);
-    // const [patchFiles, setPatchFiles] = useState([])
+    const [patchFiles, setPatchFiles] = useState([]);
     const toast = useToast();
 
     const navClick = p => {
@@ -40,7 +41,7 @@ function App() {
     };
 
     const buildClick = async () => {
-        const buffer = await rebuild(data, data.firmware.id.includes('penc'));
+        const buffer = await rebuild(data, patchFiles);
         const newData = { ...data, buffer: buffer.slice(0) };
         setData(newData);
         downloadBIN(newData.buffer);
@@ -90,6 +91,10 @@ function App() {
         });
     };
 
+    const updatePatches = patches => {
+        setPatchFiles(patches);
+    };
+
     const handleUpload = async arrayBuffer => {
         const originalData = await init(arrayBuffer);
         if (!originalData || !originalData.firmware) {
@@ -110,6 +115,7 @@ function App() {
         ) {
             setOriginalData(originalData);
             setData(originalData);
+            setPatchFiles(getPatches(originalData));
             setPage(1);
             toast({
                 title: `${originalData.firmware.name} firmware`,
@@ -123,6 +129,7 @@ function App() {
         } else {
             setOriginalData(originalData);
             setData(originalData);
+            setPatchFiles(getPatches(originalData));
             setPage(1);
             toast({
                 title: `Modified ${originalData.firmware.name} detected`,
@@ -158,7 +165,13 @@ function App() {
                     {page === 3 ? (
                         <UpdateQuest data={data} updateQuests={updateQuests} />
                     ) : null}
-                    {page === 4 ? <About /> : null}
+                    {page === 4 ? (
+                        <Patch
+                            patches={patchFiles}
+                            updatePatches={updatePatches}
+                        />
+                    ) : null}
+                    {page === 5 ? <About /> : null}
                 </Flex>
             </Box>
         </ChakraProvider>

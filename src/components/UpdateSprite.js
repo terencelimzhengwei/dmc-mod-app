@@ -108,9 +108,10 @@ const UpdateSprite = props => {
                     >{`ID: ${index} (${image.imageData.width}x${image.imageData.height})`}</Text>
                     <Center h={'80%'}>
                         <Image
+                            borderRadius={'10%'}
                             src={image.url}
                             alt={`Sprite ${index}`}
-                            fallbackSrc="https://via.placeholder.com/48"
+                            fallbackSrc="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAAAAAByaaZbAAAA6ElEQVRIx+3UwQ6CMAzGcd7/YajRdIZ1HjQW9liODXCo1PZgTIzfgdP/B8sONEhE3pN22FBkco446kYNMUKaYzUgyAta4F0BbvgUoGA8EnH+hOvVIHJwLvT6a03PYYjRBAz7gy+BgY0gHM4mEHawPxtA6gH2FzXI/UrI4FT6Wohg6Sshgaq/CwGseoDD5Q146GexCZ76SWyBF30RNWC6in0WFeiPgCz2o7iD1MMkNvv0v/MzyH0RQg84g6lPr7hK/QKWPh1T6mdQ9W9WgL4vwNBnYOkz6MAGPP4CaPV9O4IODet8g940vAF536t7Ag/0WAAAAABJRU5ErkJggg=="
                         />
                     </Center>
                 </VStack>
@@ -134,17 +135,19 @@ const UpdateSprite = props => {
                 transition="border-color 0.2s"
             >
                 <input {...getInputProps()} />
-                <Heading size={['l','xl']}>Update Images</Heading>
-                <Text fontWeight={200} fontSize={['md','l','xl']}>
+                <Heading size={['lg', 'xl']}>Update Images</Heading>
+                <Text fontWeight={200} fontSize={['sm', 'lg', 'xl']}>
                     To update images in your firmware, drag and drop or click to
                     upload your sprites.
                 </Text>
-                <Text fontWeight={200} fontSize={['md','l','xl']}>
+                <Text fontWeight={200} fontSize={['sm', 'lg', 'xl']}>
                     Filenames should correspond to the ID of the sprite (e.g.
                     1.png, 2.png etc.)
                 </Text>
             </Box>
-            <Wrap justify={"center"} align={"center"} display={"flex"}>{memoizedImageList}</Wrap>
+            <Wrap justify={'center'} align={'center'} display={'flex'}>
+                {memoizedImageList}
+            </Wrap>
         </Flex>
     );
 };

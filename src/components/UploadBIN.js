@@ -31,8 +31,8 @@ export default function FileUpload(props) {
                 borderRadius="lg"
                 borderStyle="dashed"
                 borderColor="gray.500"
-                height={["30%"]}
-                width={["100%","60%"]}
+                height={['30%']}
+                width={['100%', '60%']}
                 p={2}
                 textAlign="center"
                 cursor="pointer"
@@ -44,9 +44,12 @@ export default function FileUpload(props) {
             >
                 <input {...getInputProps()} />
                 <Center>
-                <Text fontSize={['l','xl','xl','2xl']} fontWeight={'200'}>
-                    Drag & drop your bin file here or click to upload
-                </Text>
+                    <Text
+                        fontSize={['lg', 'xl', 'xl', '2xl']}
+                        fontWeight={'200'}
+                    >
+                        Drag & drop your bin file here or click to upload
+                    </Text>
                 </Center>
             </Box>
         </VStack>

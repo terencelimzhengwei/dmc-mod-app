@@ -9,21 +9,22 @@ import {
     MenuButton,
     MenuList,
     MenuItem,
-    useBreakpointValue
+    useBreakpointValue,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../ColorModeSwitcher';
 import { HamburgerIcon } from '@chakra-ui/icons';
 
 const Nav = props => {
-    const { pageActive, fileUploaded, navClick, restartClick, buildClick } = props;
+    const { pageActive, fileUploaded, navClick, restartClick, buildClick } =
+        props;
     const [menuOpen, setMenuOpen] = useState(false);
 
     // Determine whether to display buttons or a hamburger menu based on screen size
-    const isMobile = useBreakpointValue({ base: true, md: false});
+    const isMobile = useBreakpointValue({ base: true, md: false });
 
-    const handleMenuClick = (index) => {
+    const handleMenuClick = index => {
         navClick(index);
-        setMenuOpen(false);  // Close menu after a click
+        setMenuOpen(false); // Close menu after a click
     };
 
     return (
@@ -36,7 +37,7 @@ const Nav = props => {
                         variant="outline"
                         onClick={() => setMenuOpen(!menuOpen)}
                     />
-                    <MenuList>
+                    <MenuList fontSize={'sm'}>
                         {!fileUploaded && (
                             <MenuItem onClick={() => handleMenuClick(0)}>
                                 Upload BIN
@@ -53,9 +54,12 @@ const Nav = props => {
                                 <MenuItem onClick={() => handleMenuClick(3)}>
                                     Update Quest Mode
                                 </MenuItem>
+                                <MenuItem onClick={() => handleMenuClick(4)}>
+                                    Patches
+                                </MenuItem>
                             </>
                         )}
-                        <MenuItem onClick={() => handleMenuClick(4)}>
+                        <MenuItem onClick={() => handleMenuClick(5)}>
                             About
                         </MenuItem>
                     </MenuList>
@@ -64,6 +68,7 @@ const Nav = props => {
                 <ButtonGroup variant="outline" spacing="2">
                     {!fileUploaded ? (
                         <Button
+                            fontSize={['sm', 'md']}
                             variant="ghost"
                             isActive={pageActive === 0}
                             onClick={() => navClick(0)}
@@ -74,6 +79,7 @@ const Nav = props => {
                     {fileUploaded ? (
                         <>
                             <Button
+                                fontSize={['sm', 'md']}
                                 variant="ghost"
                                 isActive={pageActive === 1}
                                 onClick={() => navClick(1)}
@@ -81,6 +87,7 @@ const Nav = props => {
                                 Update Images
                             </Button>
                             <Button
+                                fontSize={['sm', 'md']}
                                 variant="ghost"
                                 isActive={pageActive === 2}
                                 onClick={() => navClick(2)}
@@ -88,6 +95,7 @@ const Nav = props => {
                                 Update Stats
                             </Button>
                             <Button
+                                fontSize={['sm', 'md']}
                                 variant="ghost"
                                 isActive={pageActive === 3}
                                 onClick={() => navClick(3)}
@@ -96,10 +104,21 @@ const Nav = props => {
                             </Button>
                         </>
                     ) : null}
+                    {fileUploaded ? (
+                        <Button
+                            fontSize={['sm', 'md']}
+                            variant="ghost"
+                            isActive={pageActive === 4}
+                            onClick={() => navClick(4)}
+                        >
+                            Patches
+                        </Button>
+                    ) : null}
                     <Button
+                        fontSize={['sm', 'md']}
                         variant="ghost"
-                        isActive={pageActive === 4}
-                        onClick={() => navClick(4)}
+                        isActive={pageActive === 5}
+                        onClick={() => navClick(5)}
                     >
                         About
                     </Button>
@@ -108,12 +127,20 @@ const Nav = props => {
             <Spacer />
             <ButtonGroup variant="outline" spacing="2">
                 {fileUploaded ? (
-                    <Button colorScheme="green" onClick={buildClick}>
+                    <Button
+                        fontSize={['sm', 'md']}
+                        colorScheme="green"
+                        onClick={buildClick}
+                    >
                         Build
                     </Button>
                 ) : null}
                 {fileUploaded ? (
-                    <Button colorScheme="red" onClick={restartClick}>
+                    <Button
+                        fontSize={['sm', 'md']}
+                        colorScheme="red"
+                        onClick={restartClick}
+                    >
                         Restart
                     </Button>
                 ) : null}
